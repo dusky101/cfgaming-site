@@ -1,6 +1,6 @@
 ---
-// The footer on every page: the site's other pages, CF Gaming and this site on GitHub, and whose names are whose.
-import Icon from "./Icon.astro";
+// The footer on every page: the site's other pages, and whose names are whose. No links to GitHub (Marc, 13 November:
+// "i don't want links to the github yet").
 import Logo from "./Logo.astro";
 import { footerNavigation, links, mainNavigation } from "../lib/site";
 
@@ -31,17 +31,6 @@ const here = Astro.url.pathname;
         }
       </ul>
     </nav>
-    <div>
-      <h2 class="footer-heading">On GitHub</h2>
-      <ul role="list">
-        <li>
-          <a href={links.appOnGitHub}><Icon name="code" size={16} /> CF Gaming</a>
-        </li>
-        <li>
-          <a href={links.siteOnGitHub}><Icon name="code" size={16} /> This website</a>
-        </li>
-      </ul>
-    </div>
   </div>
   <div class="wrap">
     <p class="trademarks">

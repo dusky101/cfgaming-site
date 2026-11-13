@@ -3,7 +3,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import NextSteps from "../components/NextSteps.astro";
 import PageHeader from "../components/PageHeader.astro";
-import { links, pages } from "../lib/site";
+import { pages } from "../lib/site";
 ---
 
 <BaseLayout
@@ -75,14 +75,6 @@ import { links, pages } from "../lib/site";
         <li>Steam and your games connect as they would on a PC, under their own makers' policies.</li>
       </ul>
       <p class="muted">It never downloads BIOS files or games.</p>
-    </section>
-
-    <section class="glass panel" aria-labelledby="questions">
-      <div class="with-tile">
-        <span class="tile"><Icon name="person" /></span>
-        <h2 id="questions">Questions</h2>
-      </div>
-      <p>Ask on <a href={links.appIssues}>CF Gaming's page on GitHub</a>.</p>
     </section>
   </div>
 

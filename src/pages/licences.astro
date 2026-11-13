@@ -6,7 +6,7 @@ import Icon from "../components/Icon.astro";
 import NextSteps from "../components/NextSteps.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { getLatestRelease } from "../lib/release";
-import { links, pages } from "../lib/site";
+import { pages } from "../lib/site";
 
 const release = await getLatestRelease();
 ---
@@ -32,7 +32,7 @@ const release = await getLatestRelease();
         version 2.1 or later. Its source is <a href="https://www.codeweavers.com/crossover/source">on CodeWeavers' site</a>.
       </p>
       <p>
-        CF Gaming's own changes to it are attached to every release. These are <a href={release.notesUrl}>CF Gaming {release.version}'s</a>:
+        CF Gaming's own changes to it are attached to every release. These are CF Gaming {release.version}'s:
       </p>
       <ul class="patches" role="list">
         {
@@ -127,7 +127,7 @@ const release = await getLatestRelease();
         <h2 id="this-site">This website</h2>
       </div>
       <p>
-        Built with <a href="https://astro.build">Astro</a>, under the MIT licence. Its own source is <a href={links.siteOnGitHub}>on GitHub</a>.
+        Built with <a href="https://astro.build">Astro</a>, under the MIT licence.
       </p>
     </section>
 

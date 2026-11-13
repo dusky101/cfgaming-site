@@ -18,6 +18,7 @@ const releaseSchema = z.object({
   published_at: z.string(),
   draft: z.boolean(),
   prerelease: z.boolean(),
+  body: z.string().nullable(),
   assets: z.array(assetSchema),
 });
 
@@ -30,9 +31,9 @@ export interface ReleaseFile {
 export interface Release {
   /** "11.5", from the tag "v11.5". */
   version: string;
-  /** The release's page on GitHub, with its notes and known issues. */
-  notesUrl: string;
   published: Date;
+  /** The release notes' "Known issues", as Markdown without its heading: Before you start shows them. */
+  knownIssues: string;
   /** The disk image, for installing by hand. */
   diskImage: ReleaseFile;
   /** Wine's source changes, attached to every release, in order. */
@@ -98,9 +99,40 @@ export function parseRelease(json: unknown): Release {
 
   return {
     version,
-    notesUrl: release.html_url,
     published,
+    knownIssues: knownIssuesFrom(release.body ?? "", release.tag_name),
     diskImage: toFile(diskImages[0]),
     patches,
   };
+}
+
+/** The notes' "## Known issues" section, up to the next heading of its level or above, checked for the web. */
+function knownIssuesFrom(notes: string, tag: string): string {
+  const lines = notes.replace(/\r\n?/g, "\n").split("\n");
+  const start = lines.findIndex((line) => /^##\s+Known issues\s*$/i.test(line));
+  if (start === -1) {
+    throw new ReleaseError(`The latest release's notes (${tag}) have no "## Known issues" section for Before you start.`);
+  }
+  const rest = lines.slice(start + 1);
+  const end = rest.findIndex((line) => /^#{1,2}\s/.test(line));
+  const section = (end === -1 ? rest : rest.slice(0, end)).join("\n").trim();
+  if (!section) {
+    throw new ReleaseError(`The latest release's notes (${tag}) have an empty "Known issues" section.`);
+  }
+  // HTML would reach the page as it is (and <https://…> links count as HTML here); a code block's colours need inline
+  // styles and a picture from elsewhere, both of which the site's Content-Security-Policy refuses; and the site has no
+  // links to CF Gaming's GitHub (Marc, 13 November).
+  if (/<\/?[a-z!][^>]*>/i.test(section.replace(/`[^`\n]*`/g, ""))) {
+    throw new ReleaseError(`The latest release's known issues (${tag}) have HTML or a <link> in them, which the site doesn't show.`);
+  }
+  if (/^\s*(```|~~~)/m.test(section)) {
+    throw new ReleaseError(`The latest release's known issues (${tag}) have a code block, which the site can't show.`);
+  }
+  if (/!\[/.test(section)) {
+    throw new ReleaseError(`The latest release's known issues (${tag}) have a picture, which the site can't show.`);
+  }
+  if (/dusky101/i.test(section)) {
+    throw new ReleaseError(`The latest release's known issues (${tag}) link to CF Gaming's GitHub, which the site doesn't.`);
+  }
+  return section;
 }

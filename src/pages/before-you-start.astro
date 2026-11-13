@@ -3,10 +3,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Icon from "../components/Icon.astro";
 import NextSteps from "../components/NextSteps.astro";
 import PageHeader from "../components/PageHeader.astro";
+import { getEntry, render } from "astro:content";
 import { getLatestRelease } from "../lib/release";
 import { pages } from "../lib/site";
 
 const release = await getLatestRelease();
+// The release notes' known issues, made into HTML by src/content.config.ts as the site is built.
+const knownIssues = await getEntry("releaseNotes", "known-issues");
+if (!knownIssues) throw new Error("The release notes' known issues weren't loaded (src/content.config.ts).");
+const { Content: KnownIssues } = await render(knownIssues);
 ---
 
 <BaseLayout
@@ -100,13 +105,45 @@ const release = await getLatestRelease();
     <section class="glass panel" aria-labelledby="known-issues">
       <div class="with-tile">
         <span class="tile"><Icon name="document" /></span>
-        <h2 id="known-issues">What it doesn't do yet</h2>
+        <h2 id="known-issues">Known issues</h2>
       </div>
-      <p>
-        Each release's notes on GitHub list its known issues, such as games that don't start yet and what to try instead. <a href={release.notesUrl}>CF Gaming {release.version}'s notes</a>.
-      </p>
+      <p>What doesn't work, and what to try instead, as the release notes give them.</p>
+      <details class="known-issues">
+        <summary>CF Gaming {knownIssues.data.version}'s known issues</summary>
+        <div class="notes"><KnownIssues /></div>
+      </details>
     </section>
   </div>
 
   <NextSteps items={[pages.install, pages.about]} />
 </BaseLayout>
+
+<style>
+  /* A border only: the panel's own glass (or its solid fallback) shows through. */
+  .known-issues {
+    margin-top: 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+  }
+
+  summary {
+    padding: 0.85rem 1.1rem;
+    color: var(--link);
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .notes {
+    padding: 0 1.1rem 1.1rem;
+  }
+
+  /* The notes' own lists, from Markdown, so outside Astro's scoping. */
+  .notes :global(ul) {
+    margin: 0;
+    padding-left: 1.25rem;
+  }
+
+  .notes :global(li) {
+    margin-top: 0.45rem;
+  }
+</style>

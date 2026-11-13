@@ -39,10 +39,8 @@ export const mainNavigation: SitePage[] = [pages.beforeYouStart, pages.install, 
 /** The footer's links to the site's own pages. */
 export const footerNavigation: SitePage[] = [pages.licences, pages.privacy];
 
+/** Outside links. None to CF Gaming's GitHub pages (Marc, 13 November: "i don't want links to the github yet"). */
 export const links = {
-  appOnGitHub: "https://github.com/dusky101/CharddieGaming",
-  appIssues: "https://github.com/dusky101/CharddieGaming/issues",
-  siteOnGitHub: "https://github.com/dusky101/cfgaming-site",
   /** Marc's sons' YouTube channel, whose logo CF Gaming's is (Marc: "include their channel"). A link only, never an embed. */
   charddieGames: "https://www.youtube.com/@charddiegames",
 };

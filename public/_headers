@@ -9,14 +9,6 @@
   Cross-Origin-Opener-Policy: same-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains
 
-# The project's own pages.dev addresses (and each deployment's) stay out of search: cfgaming.app is the site's address.
-# Cloudflare's own example, from Pages' headers documentation (read 13 November 2026); cfgaming.app isn't matched.
-https://:project.pages.dev/*
-  X-Robots-Tag: noindex
-
-https://:version.:project.pages.dev/*
-  X-Robots-Tag: noindex
-
 # Astro names these files by their contents, so a changed file always has a new name.
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable

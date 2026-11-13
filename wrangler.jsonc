@@ -1,0 +1,19 @@
+// How Cloudflare serves the site: a Worker with static assets only (no code of its own), serving dist/ as Astro builds
+// it. Workers Builds reads this at each push to main: the dashboard's build command (`npm run build`) makes dist/, and
+// its deploy command (`npx wrangler deploy`, Cloudflare's default) publishes it with these settings.
+// From Cloudflare's Astro guide and Wrangler's settings (read 13 November 2026).
+{
+  // Must match the Worker's name in Cloudflare's dashboard, or the build fails.
+  "name": "cfgaming-site",
+  "compatibility_date": "2026-11-13",
+  "assets": {
+    "directory": "./dist",
+    // An address the site doesn't have gets dist/404.html with a 404 status. Without this, the page is empty.
+    "not_found_handling": "404-page",
+    // /about/ is dist/about/index.html, and /about goes there (307). Cloudflare's default, written down.
+    "html_handling": "auto-trailing-slash"
+  },
+  // cfgaming.app is the only address: no *.workers.dev address, and no preview addresses.
+  "workers_dev": false,
+  "preview_urls": false
+}

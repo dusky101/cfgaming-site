@@ -2,6 +2,8 @@
 node_modules/
 dist/
 .astro/
+# Wrangler's own files, if it's ever run on this Mac
+.wrangler/
 # Claude Code's files: CLAUDE.md and .claude/ are kept out of git on Marc's Mac by his ~/.gitignore_global;
 # settings.local.json (this Mac's plugins and skills) is named here too, in case that ever changes.
 .claude/settings.local.json
