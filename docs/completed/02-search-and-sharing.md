@@ -91,7 +91,7 @@ Nothing in the app. The last checks need the Cloudflare project and `cfgaming.ap
 | Sharing tags | `og:image` and `twitter:card` once on every built page |
 | Site-style review | No faults. Four suggestions: one taken (the not-found page's address, above). Not changed: the picture's alternative text could say the logo reads "CF Gaming" (link previews rarely read it out); `public/` files aren't renamed when they change, so a new picture can stay in other sites' caches for a while (usual for shared-link pictures); the `pages.dev` rules can only be proved live |
 | In a browser | Looked at in Claude's browser pane, with Marc's yes: the dev server answers `/robots.txt`, `/sitemap.xml` and `/og-image.png`. The picture looked at at full size |
-| Live, after Marc's push | Not done yet: the `pages.dev` header, Messages' preview and the `www` redirect |
+| Live (13 November, after 02.1's push) | `robots.txt`, the sitemap (6 pages) and the picture answer on `cfgaming.app`, and every page has the picture's tags. The `pages.dev` rule came out in 02.1: the site is a Worker, and its `workers.dev` address is off. Not yet: Messages' preview and the `www` redirect, both Marc's to do |
 
 ### For Marc
 1. **Push,** then check, once Cloudflare has built it:
