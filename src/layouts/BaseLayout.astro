@@ -10,11 +10,15 @@ interface Props {
   title: string;
   description: string;
   fullTitle?: boolean;
+  /** For the not-found page: no address of its own, and kept out of search. */
+  notFound?: boolean;
 }
 
-const { title, description, fullTitle = false } = Astro.props;
+const { title, description, fullTitle = false, notFound = false } = Astro.props;
 const pageTitle = fullTitle ? title : `${title} · CF Gaming`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+// The picture shown with a shared link: Marc's logo on the midnight ground (public/og-image.png, 1200 x 630).
+const shareImage = new URL("/og-image.png", Astro.site);
 ---
 
 <!doctype html>
@@ -24,7 +28,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
+    {notFound ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta name="color-scheme" content="dark light" />
     <meta name="theme-color" content="#131c3d" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#f3f5fb" media="(prefers-color-scheme: light)" />
@@ -35,8 +39,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:site_name" content="CF Gaming" />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    {!notFound && <meta property="og:url" content={canonical} />}
     <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content={shareImage} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="CF Gaming's logo: two cartoon gamers in front of a pixel-art sunset, on a dark blue ground"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to the content</a>
