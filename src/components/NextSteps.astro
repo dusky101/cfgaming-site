@@ -1,0 +1,62 @@
+---
+// "Where next": cards that are links to other pages, which lift on hover and keyboard focus.
+import Icon from "./Icon.astro";
+import type { SitePage } from "../lib/site";
+
+interface Props {
+  heading?: string;
+  items: SitePage[];
+}
+
+const { heading = "Where next", items } = Astro.props;
+---
+
+<section class="section-tight" aria-labelledby="next-steps">
+  <div class="wrap">
+    <h2 id="next-steps" class="next-heading">{heading}</h2>
+    <ul class="grid next-list" role="list">
+      {
+        items.map((page) => (
+          <li>
+            <a class="glass card card-link" href={page.href}>
+              <span class="with-tile">
+                <span class="tile">
+                  <Icon name={page.icon} />
+                </span>
+                <span class="next-title">{page.title}</span>
+              </span>
+              <span class="muted">{page.summary}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .next-heading {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .next-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .next-list li {
+    margin: 0;
+    display: grid;
+  }
+
+  .next-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+  }
+
+  .card-link .muted {
+    display: block;
+  }
+</style>

@@ -1,0 +1,100 @@
+/* CF Gaming's colours and looks, from the app's theme (CFMacGaming/Support/Theme/Theme.swift).
+   The site uses the app's Midnight Arcade look: blue as the main colour, purple as the second, on midnight.
+   Contrast (WCAG 2.2) was worked out for every text colour on the ground, under each wash and on glass, in both looks. */
+
+:root {
+  color-scheme: dark;
+
+  /* The app's six colours (AccentPreset). */
+  --orange: #ff8c00;
+  --yellow: #ffc700;
+  --blue: #1f87ff;
+  --red: #ff3d38;
+  --green: #33cc66;
+  --purple: #a35cff;
+
+  --main: var(--blue);
+  --second: var(--purple);
+  /* Midnight Arcade's text on its gradient (ThemeLook.gradientText). */
+  --navy: #15182e;
+
+  /* The ground and its washes: the main colour from the top, the second from the bottom (AppBackground). */
+  --ground: #131c3d;
+  --wash-main: rgb(31 135 255 / 0.24);
+  --wash-second: rgb(163 92 255 / 0.16);
+
+  --text: #f3f5fb;
+  --text-muted: #b9c1d9;
+  /* Blue and purple lightened for text on the dark ground: at least 4.69:1 everywhere they're used. */
+  --link: #7db8ff;
+  --accent-text: #c9a6ff;
+  --focus: #7db8ff;
+
+  /* Glass, and the solid surface that stands in for it. */
+  --glass: rgb(255 255 255 / 0.07);
+  --glass-border: rgb(255 255 255 / 0.12);
+  --glass-highlight: rgb(255 255 255 / 0.06);
+  --glass-solid: #1d2752;
+  --glass-blur: blur(18px) saturate(1.5);
+  --tint: rgb(31 135 255 / 0.14);
+  --tint-strong: rgb(31 135 255 / 0.22);
+
+  /* The theme's gradient, for washes and tiles; and 10% lighter for anything with text on it, so navy reads at
+     5.14:1 or more along all of it (on the app's exact gradient it falls to 4.40:1). */
+  --gradient: linear-gradient(135deg, var(--blue), var(--purple));
+  --gradient-text: linear-gradient(120deg, #6cb0ff, #c39bff);
+  --gradient-on-text: linear-gradient(135deg, #3593ff, #ac6cff);
+  --on-gradient: var(--navy);
+
+  --shadow-card: 0 1px 0 var(--glass-highlight) inset, 0 10px 30px rgb(4 8 24 / 0.35);
+  --shadow-lift: 0 1px 0 var(--glass-highlight) inset, 0 14px 34px rgb(31 135 255 / 0.3);
+  --shadow-button: 0 8px 22px rgb(31 135 255 / 0.35);
+
+  --radius-card: 20px;
+  --radius-panel: 28px;
+  --radius-pill: 999px;
+  --wrap: 72rem;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --ground: #f3f5fb;
+    --wash-main: rgb(31 135 255 / 0.12);
+    --wash-second: rgb(163 92 255 / 0.08);
+
+    --text: #101734;
+    --text-muted: #46506e;
+    /* Darkened for the light ground: at least 4.99:1. */
+    --link: #0b5cc9;
+    --accent-text: #7134d6;
+    --focus: #0b5cc9;
+
+    --glass: rgb(255 255 255 / 0.62);
+    --glass-border: rgb(16 23 52 / 0.1);
+    --glass-highlight: rgb(255 255 255 / 0.7);
+    --glass-solid: #ffffff;
+    --tint: rgb(31 135 255 / 0.1);
+    --tint-strong: rgb(31 135 255 / 0.16);
+    --gradient-text: linear-gradient(120deg, #0b5cc9, #7134d6);
+
+    --shadow-card: 0 1px 0 var(--glass-highlight) inset, 0 10px 28px rgb(16 23 52 / 0.08);
+    --shadow-lift: 0 1px 0 var(--glass-highlight) inset, 0 14px 30px rgb(11 92 201 / 0.18);
+    --shadow-button: 0 8px 20px rgb(31 135 255 / 0.28);
+  }
+}
+
+/* More contrast: firmer borders and text, no thin grey on grey. */
+@media (prefers-contrast: more) {
+  :root {
+    --text-muted: var(--text);
+    --glass-border: rgb(255 255 255 / 0.5);
+    --glass: var(--glass-solid);
+  }
+}
+
+@media (prefers-contrast: more) and (prefers-color-scheme: light) {
+  :root {
+    --glass-border: rgb(16 23 52 / 0.6);
+  }
+}

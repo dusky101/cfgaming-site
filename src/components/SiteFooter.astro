@@ -1,0 +1,111 @@
+---
+// The footer on every page: the site's other pages, CF Gaming and this site on GitHub, and whose names are whose.
+import Icon from "./Icon.astro";
+import Logo from "./Logo.astro";
+import { footerNavigation, links, mainNavigation } from "../lib/site";
+
+const here = Astro.url.pathname;
+---
+
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div class="footer-about">
+      <p class="footer-name">
+        <Logo size={36} />
+        <span>CF Gaming</span>
+      </p>
+      <p class="muted">Windows games and classic consoles on your Mac, in one place. Free, with no adverts.</p>
+      <p class="muted">The logo comes from <a href={links.charddieGames}>Charddie Games</a>, on YouTube.</p>
+    </div>
+    <nav aria-labelledby="footer-site">
+      <h2 id="footer-site" class="footer-heading">The site</h2>
+      <ul role="list">
+        {
+          [...mainNavigation, ...footerNavigation].map((page) => (
+            <li>
+              <a href={page.href} aria-current={here === page.href ? "page" : undefined}>
+                {page.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div>
+      <h2 class="footer-heading">On GitHub</h2>
+      <ul role="list">
+        <li>
+          <a href={links.appOnGitHub}><Icon name="code" size={16} /> CF Gaming</a>
+        </li>
+        <li>
+          <a href={links.siteOnGitHub}><Icon name="code" size={16} /> This website</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <p class="trademarks">
+      Mac and macOS are trademarks of Apple Inc., Windows and DirectX of Microsoft, and Steam of Valve. CF Gaming isn't
+      made or endorsed by them, or by any console's maker.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: clamp(2rem, 1rem + 4vw, 4rem);
+    padding-block: 2.5rem 2rem;
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.95rem;
+  }
+
+  .footer-grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  }
+
+  .footer-name {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    margin-bottom: 0.5rem;
+    font-weight: 760;
+    font-size: 1.05rem;
+  }
+
+  .footer-heading {
+    margin-bottom: 0.6rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li + li {
+    margin-top: 0.4rem;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  a[aria-current="page"] {
+    font-weight: 700;
+  }
+
+  .trademarks {
+    margin: 2rem 0 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    font-size: 0.85rem;
+  }
+</style>

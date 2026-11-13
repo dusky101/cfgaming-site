@@ -1,0 +1,161 @@
+---
+// Every credit in CF Gaming's Settings › About and its release notes. The credits are CF Gaming 11.5's (written for
+// that release: check them at each release); Wine's source changes are read from the latest release with the download.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import NextSteps from "../components/NextSteps.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { getLatestRelease } from "../lib/release";
+import { links, pages } from "../lib/site";
+
+const release = await getLatestRelease();
+---
+
+<BaseLayout
+  title="Licences and source"
+  description="Every licence and credit in CF Gaming, Wine's source changes and CodeWeavers' source."
+>
+  <PageHeader
+    icon="document"
+    title="Licences and source"
+    lead="CF Gaming is built on other people's work. Here's whose it is, under which licence, and where its source is."
+  />
+
+  <div class="wrap stack">
+    <section class="glass panel" aria-labelledby="wine">
+      <div class="with-tile">
+        <span class="tile"><Icon name="code" /></span>
+        <h2 id="wine">Wine, and its source</h2>
+      </div>
+      <p>
+        CF Gaming's engine is Wine, from CodeWeavers' CrossOver 26.3 source, under the GNU Lesser General Public License,
+        version 2.1 or later. Its source is <a href="https://www.codeweavers.com/crossover/source">on CodeWeavers' site</a>.
+      </p>
+      <p>
+        CF Gaming's own changes to it are attached to every release. These are <a href={release.notesUrl}>CF Gaming {release.version}'s</a>:
+      </p>
+      <ul class="patches" role="list">
+        {
+          release.patches.map((patch) => (
+            <li>
+              <a href={patch.url}>
+                <code>{patch.name}</code>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="glass panel" aria-labelledby="graphics">
+      <div class="with-tile">
+        <span class="tile"><Icon name="monitor" /></span>
+        <h2 id="graphics">DirectX on a Mac</h2>
+      </div>
+      <ul class="ticks" role="list">
+        <li>
+          <strong>D3DMetal</strong> © Apple, under the Game Porting Toolkit licence, which allows non-commercial
+          distribution. CF Gaming is free.
+        </li>
+        <li>
+          <strong>DXMT</strong>, under the MIT licence (© 2023 Feifan He), with LLVM's (Apache 2.0 with LLVM Exceptions)
+          and NVIDIA NVAPI's (MIT).
+        </li>
+        <li>Wine's own Direct3D, as part of Wine.</li>
+      </ul>
+    </section>
+
+    <section class="glass panel" aria-labelledby="inside">
+      <div class="with-tile">
+        <span class="tile"><Icon name="layers" /></span>
+        <h2 id="inside">Inside the app</h2>
+      </div>
+      <ul class="ticks" role="list">
+        <li>
+          <strong>applesauce</strong>, under the GNU General Public License version 3. Its licence and source are inside
+          the app: <strong>About applesauce…</strong> in Compress Games….
+        </li>
+        <li><strong>Sparkle</strong>, which CF Gaming updates itself with, under the MIT licence: Help › Sparkle Licence.</li>
+        <li>
+          <strong>GStreamer, SDL, GnuTLS, Nettle and GMP</strong>, under their own licences: Settings › Engine › Licences and
+          Notices.
+        </li>
+      </ul>
+    </section>
+
+    <section class="glass panel" aria-labelledby="pictures">
+      <div class="with-tile">
+        <span class="tile"><Icon name="gamepad" /></span>
+        <h2 id="pictures">Pictures and lists in the app</h2>
+      </div>
+      <ul class="ticks" role="list">
+        <li>
+          <strong>Console icons:</strong> RetroArch's themes from libretro's <a href="https://github.com/libretro/retroarch-assets">retroarch-assets</a>, under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>: Automatic, Systematic
+          and FlatUX by baxysquare (<a href="https://github.com/baxysquare/baxy-retroarch-themes">his themes</a>), Retrosystem
+          based on them, Dot-art by Yoshi-kun and Tatsuya79, Monochrome by Kivutar, and Daite, FlatUI and Pixel by
+          libretro's contributors.
+        </li>
+        <li>
+          <strong>Console controllers' pictures</strong> on the Controllers page, in CF Gaming 11.5: <a href="https://github.com/OpenEmu/OpenEmu">OpenEmu</a>'s, drawn by Craig Erskine, David McLeod and Ricky Romero.
+        </li>
+        <li>
+          <strong>What each Nintendo 64 game saves on:</strong> from the Mupen64Plus team's list of games in <a href="https://github.com/mupen64plus/mupen64plus-core">Mupen64Plus-Core</a>, under the GNU General Public
+          License version 2.
+        </li>
+        <li>
+          <strong>CF Gaming's own build of Mupen64Plus-Next:</strong> libretro's <a href="https://github.com/libretro/mupen64plus-libretro-nx">mupen64plus-libretro-nx</a> with Davey-Hughes's fix
+          for GLideN64 on a Mac (<a href="https://github.com/libretro/mupen64plus-libretro-nx/pull/664">#664</a>), under
+          the GNU General Public License version 2, with <a href="https://github.com/dusky101/CharddieGaming/tree/main/cores/mupen64plus-next-15bada8-glfix">its source</a>.
+        </li>
+      </ul>
+    </section>
+
+    <section class="glass panel" aria-labelledby="downloaded">
+      <div class="with-tile">
+        <span class="tile"><Icon name="download" /></span>
+        <h2 id="downloaded">Downloaded when you ask</h2>
+      </div>
+      <p>
+        RetroArch, its cores, the shaders, libretro-database's and Project64's cheat files, and the emulators aren't part of
+        CF Gaming. CF Gaming downloads each one from its maker, under its own licence, when you ask.
+      </p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="this-site">
+      <div class="with-tile">
+        <span class="tile"><Icon name="globe" /></span>
+        <h2 id="this-site">This website</h2>
+      </div>
+      <p>
+        Built with <a href="https://astro.build">Astro</a>, under the MIT licence. Its own source is <a href={links.siteOnGitHub}>on GitHub</a>.
+      </p>
+    </section>
+
+    <p class="muted trademark-note">
+      Mac and macOS are trademarks of Apple Inc., Windows and DirectX of Microsoft, and Steam of Valve. CF Gaming isn't
+      made or endorsed by them, or by any console's maker, and the names of consoles and games are their owners'.
+    </p>
+  </div>
+
+  <NextSteps items={[pages.privacy, pages.about]} />
+</BaseLayout>
+
+<style>
+  .patches {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+    gap: 0.4rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .patches li {
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .trademark-note {
+    font-size: 0.95rem;
+  }
+</style>

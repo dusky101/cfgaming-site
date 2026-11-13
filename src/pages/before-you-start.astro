@@ -1,0 +1,112 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import NextSteps from "../components/NextSteps.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { getLatestRelease } from "../lib/release";
+import { pages } from "../lib/site";
+
+const release = await getLatestRelease();
+---
+
+<BaseLayout
+  title="Before you start"
+  description="What you need before installing CF Gaming: a Mac with Apple silicon and macOS 27, Rosetta 2, and room for your games."
+>
+  <PageHeader
+    icon="chip"
+    title="Before you start"
+    lead="What CF Gaming needs, so everything works the first time."
+  />
+
+  <div class="wrap stack">
+    <section class="glass panel" aria-labelledby="your-mac">
+      <div class="with-tile">
+        <span class="tile"><Icon name="chip" /></span>
+        <h2 id="your-mac">Your Mac</h2>
+      </div>
+      <ul class="ticks" role="list">
+        <li>A Mac with <strong>Apple silicon</strong>: an M1 or later.</li>
+        <li><strong>macOS 27</strong> or later.</li>
+      </ul>
+      <p class="muted">
+        To check, choose <strong>Apple menu › About This Mac</strong>: it shows the Mac's chip and its version of macOS.
+      </p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="rosetta">
+      <div class="with-tile">
+        <span class="tile"><Icon name="arrows" /></span>
+        <h2 id="rosetta">Rosetta 2</h2>
+      </div>
+      <p>
+        Windows programs need Apple's Rosetta 2. If it isn't installed, CF Gaming says so when it opens, and explains how
+        to add it.
+      </p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="room">
+      <div class="with-tile">
+        <span class="tile"><Icon name="drive" /></span>
+        <h2 id="room">Room on your Mac</h2>
+      </div>
+      <ul class="ticks" role="list">
+        <li>About <strong>1.6 GB</strong> for CF Gaming itself.</li>
+        <li>
+          Room for your games. Each Windows case is its own copy of Windows with its own games, and big games take a lot
+          of space.
+        </li>
+        <li>Room for recordings: at Standard quality, about 3.7 GB for 40 minutes.</li>
+        <li>Room for texture packs, if you use them: a 4K .hts pack can be 20 GB or more.</li>
+      </ul>
+    </section>
+
+    <section class="glass panel" aria-labelledby="steam">
+      <div class="with-tile">
+        <span class="tile"><Icon name="monitor" /></span>
+        <h2 id="steam">For Steam</h2>
+      </div>
+      <p>A Steam account, and an internet connection.</p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="consoles">
+      <div class="with-tile">
+        <span class="tile"><Icon name="gamepad" /></span>
+        <h2 id="consoles">For console games</h2>
+      </div>
+      <ul class="ticks" role="list">
+        <li>
+          <strong>Your own games,</strong> in a folder with a folder for each console, and <strong>your own BIOS files</strong> for the consoles that need them. CF Gaming never downloads BIOS files or games.
+        </li>
+        <li>
+          <strong>RetroArch,</strong> which CF Gaming installs if you haven't got it: about 230 MB, from libretro's own site.
+          Its cores are a few MB each (MAME's is about 400 MB).
+        </li>
+        <li>
+          <strong>Other emulators,</strong> which CF Gaming installs from their makers' own sites, checked first: xemu, Xenia
+          Edge, Dolphin, RPCS3, PCSX2 and ScummVM. Or use one you got yourself.
+        </li>
+      </ul>
+    </section>
+
+    <section class="glass panel" aria-labelledby="internet">
+      <div class="with-tile">
+        <span class="tile"><Icon name="globe" /></span>
+        <h2 id="internet">An internet connection, now and then</h2>
+      </div>
+      <p>So CF Gaming can update itself, and download what you ask it to.</p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="known-issues">
+      <div class="with-tile">
+        <span class="tile"><Icon name="document" /></span>
+        <h2 id="known-issues">What it doesn't do yet</h2>
+      </div>
+      <p>
+        Each release's notes on GitHub list its known issues, such as games that don't start yet and what to try instead. <a href={release.notesUrl}>CF Gaming {release.version}'s notes</a>.
+      </p>
+    </section>
+  </div>
+
+  <NextSteps items={[pages.install, pages.about]} />
+</BaseLayout>

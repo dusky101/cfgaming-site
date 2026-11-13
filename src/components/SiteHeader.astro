@@ -1,0 +1,143 @@
+---
+// The header on every page: CF Gaming's logo and name (Home), the pages, and the download.
+import DownloadButton from "./DownloadButton.astro";
+import Logo from "./Logo.astro";
+import { mainNavigation, pages } from "../lib/site";
+
+const here = Astro.url.pathname;
+---
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href={pages.home.href} aria-current={here === pages.home.href ? "page" : undefined}>
+      <Logo size={44} eager />
+      <span>CF Gaming</span>
+    </a>
+    <nav class="site-nav" aria-label="Main">
+      <ul role="list">
+        {
+          mainNavigation.map((page) => (
+            <li>
+              <a href={page.href} aria-current={here === page.href ? "page" : undefined}>
+                {page.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="header-download">
+      <DownloadButton />
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: relative;
+    z-index: 5;
+    border-bottom: 1px solid var(--glass-border);
+    background-color: var(--glass-solid);
+    background-color: color-mix(in srgb, var(--ground) 72%, transparent);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+  }
+
+  @media (min-width: 48rem) {
+    .site-header {
+      position: sticky;
+      top: 0;
+    }
+  }
+
+  .header-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1.5rem;
+    padding-block: 0.75rem;
+  }
+
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-right: auto;
+    color: var(--text);
+    font-size: 1.15rem;
+    font-weight: 780;
+    letter-spacing: -0.01em;
+    text-decoration: none;
+  }
+
+  .site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-nav li {
+    margin: 0;
+  }
+
+  .site-nav a {
+    display: block;
+    padding: 0.45rem 0.8rem;
+    border-radius: var(--radius-pill);
+    color: var(--text);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .site-nav a:hover {
+    background-image: linear-gradient(var(--tint), var(--tint));
+  }
+
+  /* The page you're on: a tinted capsule and an underline, so it isn't shown by colour alone. */
+  .site-nav a[aria-current="page"] {
+    background-image: linear-gradient(var(--tint-strong), var(--tint-strong));
+    text-decoration: underline;
+    text-decoration-color: var(--link);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.35em;
+  }
+
+  /* On a phone: the name and the download on the first row, the pages on the second. */
+  @media (max-width: 47.99rem) {
+    .site-nav {
+      order: 3;
+      flex-basis: 100%;
+    }
+
+    .site-nav ul {
+      margin-inline: -0.8rem;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .site-header {
+      background-color: var(--glass-solid);
+      -webkit-backdrop-filter: none;
+      backdrop-filter: none;
+    }
+  }
+
+  @media (prefers-contrast: more) {
+    .site-header {
+      background-color: var(--glass-solid);
+    }
+  }
+
+  @media (forced-colors: active) {
+    .site-header {
+      border-bottom-color: CanvasText;
+    }
+
+    .site-nav a[aria-current="page"] {
+      outline: 1px solid CanvasText;
+    }
+  }
+</style>

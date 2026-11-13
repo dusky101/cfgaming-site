@@ -1,0 +1,66 @@
+---
+// Marc's story, drafted from docs/ABOUT.md for him to change into his own words.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import NextSteps from "../components/NextSteps.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { links, pages } from "../lib/site";
+---
+
+<BaseLayout title="About" description="Why CF Gaming exists: a family's Windows games on their Macs, then the classic consoles.">
+  <PageHeader icon="heart" title="About CF Gaming" lead="Why I made it, and what it's for." />
+
+  <div class="wrap narrow stack story">
+    <section class="glass panel" aria-labelledby="at-home">
+      <div class="with-tile">
+        <span class="tile"><Icon name="people" /></span>
+        <h2 id="at-home">It began at home</h2>
+      </div>
+      <p>
+        My sons wanted to play their Windows games on their Macs, DirectX 12 ones included. Nothing we tried did all of it
+        simply, so I built CF Gaming: its own Wine engine, made from CodeWeavers' open source, with Apple's D3DMetal for
+        DirectX 12, and Steam in a case of its own, everything set up for them.
+      </p>
+      <p>
+        CF Gaming's logo is the one I made for their YouTube channel, <a href={links.charddieGames}>Charddie Games</a>.
+      </p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="consoles">
+      <div class="with-tile">
+        <span class="tile"><Icon name="gamepad" /></span>
+        <h2 id="consoles">Then the consoles</h2>
+      </div>
+      <p>
+        Once the Windows games played, the old consoles followed: RetroArch and its cores, set up by CF Gaming, with each
+        console's controller, memory cards, cheats, texture packs, and settings of its own for every game. Mac games and
+        other emulators sit beside them.
+      </p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="one-place">
+      <div class="with-tile">
+        <span class="tile"><Icon name="home" /></span>
+        <h2 id="one-place">One place, set up for a family</h2>
+      </div>
+      <p>
+        Every game on the Mac in one place, with nothing to configure by hand, calm words, and help built in. It's free,
+        with no adverts, and it says plainly what it does and what it doesn't do yet.
+      </p>
+      <p class="signature">Marc</p>
+    </section>
+  </div>
+
+  <NextSteps items={[pages.beforeYouStart, pages.install, pages.licences]} />
+</BaseLayout>
+
+<style>
+  .story p {
+    font-size: 1.12rem;
+  }
+
+  .signature {
+    margin-top: 1.5rem;
+    font-weight: 700;
+  }
+</style>

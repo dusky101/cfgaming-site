@@ -1,0 +1,60 @@
+---
+// The download: a plain link straight to the disk image on GitHub's servers, read from the latest release as the
+// site is built. "large" adds the version, size and date under it.
+import Icon from "./Icon.astro";
+import { getLatestRelease } from "../lib/release";
+import { formatDate, formatSize, isoDate } from "../lib/format";
+
+interface Props {
+  size?: "small" | "large";
+  /** On a bold section of the theme's colours, the button is navy. */
+  onBand?: boolean;
+}
+
+const { size = "small", onBand = false } = Astro.props;
+const release = await getLatestRelease();
+const bytes = formatSize(release.diskImage.bytes);
+const kind = onBand ? "button-band" : "button-primary";
+---
+
+{
+  size === "small" ? (
+    <a class:list={["button", kind]} href={release.diskImage.url}>
+      <Icon name="download" size={18} />
+      Download<span class="visually-hidden">{` CF Gaming ${release.version}, a ${bytes} disk image`}</span>
+    </a>
+  ) : (
+    <div class="download">
+      <a class:list={["button", "button-large", kind]} href={release.diskImage.url}>
+        <Icon name="download" size={24} />
+        Download CF Gaming {release.version}
+      </a>
+      <p class="download-facts">
+        <span>Disk image, {bytes}</span>
+        <span aria-hidden="true">·</span>
+        <span>Released <time datetime={isoDate(release.published)}>{formatDate(release.published)}</time></span>
+      </p>
+    </div>
+  )
+}
+
+<style>
+  .download {
+    display: grid;
+    justify-items: start;
+    gap: 0.7rem;
+  }
+
+  .download-facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 0.45rem;
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 560;
+  }
+
+  .download-facts span {
+    white-space: nowrap;
+  }
+</style>

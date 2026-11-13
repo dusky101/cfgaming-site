@@ -1,0 +1,28 @@
+---
+// Marc's CF Gaming logo, made at each size it's shown, as AVIF and WebP (PNG for older browsers), by Astro.
+// Decorative by default: beside "CF Gaming" the name says what it is. Give `alt` where it stands alone.
+import { Picture } from "astro:assets";
+import logo from "../assets/brand/cf-gaming-logo.png";
+
+interface Props {
+  size: number;
+  alt?: string;
+  /** For the logo at the top of a page, so it isn't held back. */
+  eager?: boolean;
+}
+
+const { size, alt = "", eager = false } = Astro.props;
+---
+
+<Picture
+  src={logo}
+  alt={alt}
+  width={size}
+  height={size}
+  densities={[1, 2]}
+  formats={["avif", "webp"]}
+  loading={eager ? "eager" : "lazy"}
+  decoding="async"
+  fetchpriority={eager ? "high" : undefined}
+  class="logo"
+/>

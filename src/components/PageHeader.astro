@@ -1,0 +1,36 @@
+---
+// The top of every page but Home: its icon tile, its one h1, and a line under it.
+import Icon from "./Icon.astro";
+import type { IconName } from "../lib/icons";
+
+interface Props {
+  title: string;
+  lead: string;
+  icon: IconName;
+}
+
+const { title, lead, icon } = Astro.props;
+---
+
+<div class="page-header wrap">
+  <span class="tile tile-large">
+    <Icon name={icon} size={28} />
+  </span>
+  <h1>{title}</h1>
+  <p class="lead">{lead}</p>
+  <slot />
+</div>
+
+<style>
+  .page-header {
+    padding-block: clamp(2.5rem, 1.5rem + 4vw, 4.5rem) clamp(1rem, 0.5rem + 2vw, 2rem);
+  }
+
+  .tile {
+    margin-bottom: 1.25rem;
+  }
+
+  h1 {
+    font-size: clamp(2.2rem, 1.5rem + 3vw, 3.6rem);
+  }
+</style>

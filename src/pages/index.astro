@@ -1,0 +1,314 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import DownloadButton from "../components/DownloadButton.astro";
+import Icon from "../components/Icon.astro";
+import Logo from "../components/Logo.astro";
+import NextSteps from "../components/NextSteps.astro";
+import { pages } from "../lib/site";
+---
+
+<BaseLayout
+  fullTitle
+  title="CF Gaming: Windows games and classic consoles on your Mac"
+  description="A free app for Macs with Apple silicon that plays Windows games through its own Wine engine and classic consoles through RetroArch, in one place."
+>
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div class="hero-logo">
+        <Logo size={200} eager alt="CF Gaming's logo: two cartoon gamers in front of a pixel-art sunset" />
+      </div>
+      <ul class="chips" role="list" aria-label="At a glance">
+        <li class="chip"><Icon name="check" size={16} /> Free</li>
+        <li class="chip"><Icon name="chip" size={16} /> Macs with Apple silicon</li>
+        <li class="chip"><Icon name="refresh" size={16} /> macOS 27 or later</li>
+      </ul>
+      <h1>Windows games and classic consoles, <span class="gradient-text">together on your Mac.</span></h1>
+      <p class="lead">
+        CF Gaming plays your Windows games through its own Wine engine, and your consoles through RetroArch, each one
+        set up for you, in one place. It's free, with no adverts.
+      </p>
+      <DownloadButton size="large" />
+      <p class="hero-links muted">
+        <a href={pages.beforeYouStart.href}>Before you start</a>
+        <span aria-hidden="true">·</span>
+        <a href={pages.install.href}>How to install</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="what-it-does">
+    <div class="wrap">
+      <div class="section-heading">
+        <span class="eyebrow">What it does</span>
+        <h2 id="what-it-does">Every game you play, ready with one click</h2>
+        <p class="lead">
+          Everything lives in a case: Steam, a console, an emulator, or a group of Mac games. Each case keeps its kind of
+          game together, with its artwork, and away from everything else.
+        </p>
+      </div>
+
+      <div class="highlights">
+        <article class="glass panel highlight highlight-first">
+          <div class="with-tile">
+            <span class="tile tile-large"><Icon name="monitor" size={28} /></span>
+            <h3>Windows games, and Steam</h3>
+          </div>
+          <p>
+            Steam gets a case of its own. Install your games in Steam as you would on a PC, and each one appears in CF
+            Gaming by itself, with Steam's artwork, ready to play.
+          </p>
+          <ul class="ticks" role="list">
+            <li>
+              CF Gaming's own Wine engine, made from CodeWeavers' open source, draws each game's DirectX with Apple's
+              D3DMetal for DirectX 12, DXMT for DirectX 10 and 11, or Wine's own for older games. Auto chooses for you.
+            </li>
+            <li>Games already in another case, a CrossOver bottle or a Whisky bottle come across without downloading again.</li>
+            <li>An empty Windows case takes the programs and games you install from a file.</li>
+          </ul>
+        </article>
+
+        <article class="glass panel highlight">
+          <div class="with-tile">
+            <span class="tile tile-large"><Icon name="gamepad" size={28} /></span>
+            <h3>Classic consoles, through RetroArch</h3>
+          </div>
+          <p>
+            Put your games in one folder, with a folder for each console. <strong>Set Up Consoles</strong> finds the
+            consoles you have games for, and gives each one a case of its own, with its box art and its own settings.
+          </p>
+          <ul class="ticks" role="list">
+            <li>RetroArch and its cores, installed from libretro's own site, checked before they're kept, and kept up to date.</li>
+            <li>Your own RetroArch settings are never changed: CF Gaming keeps its own.</li>
+            <li>
+              xemu, Xenia Edge, Dolphin, RPCS3, PCSX2 and ScummVM too, for the Xbox and Xbox 360, the GameCube and Wii, the
+              PlayStation 3 and 2, and classic adventure games.
+            </li>
+            <li>It never downloads BIOS files or games: you bring your own.</li>
+          </ul>
+        </article>
+
+        <article class="glass panel highlight">
+          <div class="with-tile">
+            <span class="tile tile-large"><Icon name="sliders" size={28} /></span>
+            <h3>Custom Setup, and texture packs</h3>
+          </div>
+          <p>
+            Give one game its own core, graphics and picture, over its case's, while every other game keeps the case's
+            settings.
+          </p>
+          <ul class="ticks" role="list">
+            <li>
+              Add a texture pack to a Nintendo 64 game, and see it redrawn in finer detail. Packs of pictures, .htc and
+              .hts all work, the last with CF Gaming's own build of Mupen64Plus-Next.
+            </li>
+            <li>A console's case shows which of its games have settings of their own.</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="and-more">
+    <div class="wrap">
+      <h2 id="and-more" class="more-heading">And more</h2>
+      <div class="grid">
+        <article class="glass card">
+          <div class="with-tile">
+            <span class="tile tile-soft"><Icon name="joystick" /></span>
+            <h3>Controllers</h3>
+          </div>
+          <p class="muted">
+            Every controller connected, how RetroArch reads it, a test for its buttons, and which stick works as the D-pad
+            for each console.
+          </p>
+        </article>
+        <article class="glass card">
+          <div class="with-tile">
+            <span class="tile tile-soft"><Icon name="record" /></span>
+            <h3>Recording</h3>
+          </div>
+          <p class="muted">
+            Press <kbd><span aria-hidden="true">⌃⇧R</span><span class="visually-hidden">Control-Shift-R</span></kbd> to
+            record a game, even full screen, with everyone's voices mixed in. Each person's recordings go in a folder of
+            their own.
+          </p>
+        </article>
+        <article class="glass card">
+          <div class="with-tile">
+            <span class="tile tile-soft"><Icon name="book" /></span>
+            <h3>The guide, built in</h3>
+          </div>
+          <p class="muted">
+            A page for each part of CF Gaming. The <strong>?</strong> at the top of each page of Settings opens the guide at
+            the page about it.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight" aria-labelledby="free">
+    <div class="wrap">
+      <div class="band panel promise">
+        <div>
+          <h2 id="free">Free, and nothing else attached</h2>
+          <p>
+            CF Gaming is free, with no adverts and nothing tracked, on this site or in the app. It keeps itself up to date,
+            and says plainly what it does and what it doesn't do yet.
+          </p>
+        </div>
+        <DownloadButton size="large" onBand />
+      </div>
+    </div>
+  </section>
+
+  <NextSteps items={[pages.beforeYouStart, pages.install, pages.about]} />
+</BaseLayout>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: clip;
+    padding-block: clamp(3rem, 2rem + 6vw, 7rem) clamp(2rem, 1rem + 3vw, 3.5rem);
+  }
+
+  /* A glow of the theme's colours behind the heading; it doesn't move. */
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: -30% -10% auto;
+    height: 120%;
+    z-index: -1;
+    background:
+      radial-gradient(40% 45% at 30% 35%, rgb(31 135 255 / 0.28), transparent 70%),
+      radial-gradient(35% 40% at 75% 45%, rgb(163 92 255 / 0.22), transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 60rem;
+  }
+
+  .hero-logo {
+    width: clamp(8.5rem, 6rem + 10vw, 12.5rem);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-logo :global(img) {
+    display: block;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 14px 30px rgb(31 135 255 / 0.35));
+  }
+
+  .hero h1 {
+    max-width: 18ch;
+  }
+
+  .hero .lead {
+    margin-bottom: 2rem;
+  }
+
+  .hero-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.1rem;
+    font-weight: 600;
+  }
+
+  /* Centred from a tablet's width up, ready for the app's own pictures below it in a later phase. */
+  @media (min-width: 48rem) {
+    .hero-inner {
+      text-align: center;
+    }
+
+    .hero .chips,
+    .hero-links,
+    .hero :global(.download-facts) {
+      justify-content: center;
+    }
+
+    .hero h1,
+    .hero .lead,
+    .hero-logo {
+      margin-inline: auto;
+    }
+
+    .hero :global(.download) {
+      justify-items: center;
+    }
+  }
+
+  .highlights {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  }
+
+  @media (min-width: 64rem) {
+    .highlights {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .highlight-first {
+      grid-column: 1 / -1;
+    }
+
+    .highlight-first .ticks {
+      columns: 3;
+      column-gap: 2rem;
+    }
+
+    .highlight-first .ticks li {
+      break-inside: avoid;
+    }
+  }
+
+  .highlight h3 {
+    font-size: 1.45rem;
+  }
+
+  .highlight > :last-child {
+    margin-bottom: 0;
+  }
+
+  .more-heading {
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .promise {
+    display: grid;
+    gap: 1.5rem 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 56rem) {
+    .promise {
+      grid-template-columns: 1fr auto;
+    }
+  }
+
+  .promise p {
+    max-width: 38rem;
+    font-size: 1.1rem;
+    font-weight: 520;
+  }
+
+  .promise > div > :last-child {
+    margin-bottom: 0;
+  }
+
+  @media (prefers-color-scheme: light) {
+    .hero::before {
+      opacity: 0.6;
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce), (forced-colors: active) {
+    .hero::before {
+      display: none;
+    }
+  }
+</style>

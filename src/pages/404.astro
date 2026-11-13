@@ -1,0 +1,17 @@
+---
+// Cloudflare serves this for any address the site doesn't have. Without it, Cloudflare Pages would treat the site as
+// a single-page app and answer every unknown address with Home.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import NextSteps from "../components/NextSteps.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { pages } from "../lib/site";
+---
+
+<BaseLayout title="Page not found" description="That page isn't on cfgaming.app.">
+  <PageHeader
+    icon="compass"
+    title="That page isn't here"
+    lead="The address may be mistyped, or the page may have moved. These are the site's pages."
+  />
+  <NextSteps heading="The site's pages" items={[pages.home, pages.beforeYouStart, pages.install, pages.about]} />
+</BaseLayout>

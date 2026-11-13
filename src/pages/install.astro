@@ -1,0 +1,115 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import DownloadButton from "../components/DownloadButton.astro";
+import Icon from "../components/Icon.astro";
+import NextSteps from "../components/NextSteps.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { getLatestRelease } from "../lib/release";
+import { pages } from "../lib/site";
+
+const release = await getLatestRelease();
+---
+
+<BaseLayout
+  title="Install"
+  description="How to install CF Gaming from its disk image, what happens the first time it opens, and how it keeps itself up to date."
+>
+  <PageHeader
+    icon="download"
+    title="Installing CF Gaming"
+    lead="Once, by hand, on each Mac. After that, CF Gaming keeps itself up to date."
+  >
+    <DownloadButton size="large" />
+  </PageHeader>
+
+  <div class="wrap stack">
+    <section class="glass panel" aria-labelledby="steps">
+      <h2 id="steps">Four steps</h2>
+      <ol class="steps" role="list">
+        <li>
+          <span class="tile tile-number">1</span>
+          <div>
+            <h3>Open the disk image</h3>
+            <p>Download <code>{release.diskImage.name}</code>, and open it.</p>
+          </div>
+        </li>
+        <li>
+          <span class="tile tile-number">2</span>
+          <div>
+            <h3>Open CF Gaming</h3>
+            <p>
+              Double-click <strong>CF Gaming</strong> in the disk image's window. macOS asks whether to open an app
+              downloaded from the Internet: click <strong>Open</strong>.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="tile tile-number">3</span>
+          <div>
+            <h3>Click Install</h3>
+            <p>
+              CF Gaming moves itself into the Applications folder in your home folder (<code>~/Applications</code>), asks
+              whether you'd like a shortcut on your Desktop, and opens from there. No administrator's password is needed.
+            </p>
+          </div>
+        </li>
+        <li>
+          <span class="tile tile-number">4</span>
+          <div>
+            <h3>Eject the disk image</h3>
+            <p>It isn't needed any more.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="glass panel" aria-labelledby="first-time">
+      <div class="with-tile">
+        <span class="tile"><Icon name="compass" /></span>
+        <h2 id="first-time">The first time it opens</h2>
+      </div>
+      <p>CF Gaming sets itself up with you, in its own window.</p>
+      <ul class="ticks" role="list">
+        <li>
+          <strong>Recording first:</strong> it asks to record your games, which macOS has to allow. <strong>Not Now</strong> carries on without it, and Settings can allow it later.
+        </li>
+        <li>
+          <strong>Auto Setup</strong> takes you through a few steps, each one skippable: who plays, your colours, a Steam
+          case, an older setup to bring across if there's one on the Mac, and recording. <strong>Manual Setup</strong> goes
+          straight to CF Gaming.
+        </li>
+      </ul>
+      <p class="muted">Everything the setup does can be changed later, in Settings.</p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="updates">
+      <div class="with-tile">
+        <span class="tile"><Icon name="refresh" /></span>
+        <h2 id="updates">Updates, by themselves</h2>
+      </div>
+      <ul class="ticks" role="list">
+        <li>Once a day, CF Gaming looks for a new version, and downloads it by itself, with nothing to click.</li>
+        <li>
+          It waits until nothing is playing, then counts down from 10 seconds and restarts as the new version. <strong>Not Now</strong> leaves it until you next quit.
+        </li>
+        <li>Your cases and games, people, recordings and settings all stay as they are.</li>
+        <li>Each update is checked to make sure it really comes from CF Gaming's maker; one that doesn't is refused.</li>
+      </ul>
+      <p class="muted">Already have CF Gaming? You don't need this download: it updates itself.</p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="signed">
+      <div class="with-tile">
+        <span class="tile"><Icon name="shield" /></span>
+        <h2 id="signed">Signed, and checked by Apple</h2>
+      </div>
+      <p>
+        CF Gaming and its disk image are signed with its maker's Developer ID and notarised by Apple, so macOS knows where
+        they come from. What CF Gaming downloads for you, such as Steam's installer, RetroArch and the emulators, is
+        checked before it's kept.
+      </p>
+    </section>
+  </div>
+
+  <NextSteps items={[pages.beforeYouStart, pages.about]} />
+</BaseLayout>

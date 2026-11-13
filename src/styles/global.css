@@ -1,0 +1,599 @@
+/* The site's shared look: the ground, type, layout and the parts every page uses (glass cards, buttons, icon tiles,
+   chips, bold sections), and the fallbacks the app has: Reduce Transparency, more contrast, Reduce Motion and
+   forced colours. Modelled on CFMacGaming/Views/Components/ThemeViews.swift. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+/* From a tablet's width the header stays at the top, so what keyboard focus or the skip link moves to isn't
+   left under it. */
+@media (min-width: 48rem) {
+  html {
+    scroll-padding-top: 5.5rem;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--ground);
+  color: var(--text);
+  font-family: system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The washes over the ground, fixed behind everything, as the app's window background. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom right, var(--wash-main), transparent 55%),
+    linear-gradient(to top left, var(--wash-second), transparent 55%);
+}
+
+main {
+  flex: 1;
+}
+
+main:focus {
+  outline: none;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.6em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(2.3rem, 1.5rem + 3.6vw, 4.2rem);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: clamp(1.65rem, 1.25rem + 1.6vw, 2.5rem);
+  font-weight: 760;
+  letter-spacing: -0.015em;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 680;
+}
+
+p,
+ul,
+ol {
+  margin: 0 0 1em;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+li + li {
+  margin-top: 0.35em;
+}
+
+a {
+  color: var(--link);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.14em;
+}
+
+strong {
+  font-weight: 680;
+}
+
+kbd {
+  font-family: inherit;
+  font-weight: 650;
+  padding: 0.05em 0.4em;
+  border: 1px solid var(--glass-border);
+  border-radius: 6px;
+  background: var(--glass);
+}
+
+code {
+  font-family: ui-monospace, monospace;
+  font-size: 0.92em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- Layout ---------- */
+
+.wrap {
+  width: min(100% - 2rem, var(--wrap));
+  margin-inline: auto;
+}
+
+.narrow {
+  max-width: 46rem;
+}
+
+.section {
+  padding-block: clamp(3rem, 2rem + 4vw, 5.5rem);
+}
+
+.section-tight {
+  padding-block: clamp(2rem, 1.5rem + 2vw, 3rem);
+}
+
+.lead {
+  font-size: clamp(1.15rem, 1.05rem + 0.45vw, 1.35rem);
+  color: var(--text-muted);
+  max-width: 44rem;
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr));
+}
+
+.grid-wide {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+}
+
+.stack > * + * {
+  margin-top: 1.25rem;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -10rem;
+  z-index: 10;
+  padding: 0.7rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: var(--gradient-on-text);
+  color: var(--on-gradient);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* ---------- Glass ---------- */
+
+.glass {
+  background-color: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+.card {
+  padding: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+}
+
+.card > :last-child {
+  margin-bottom: 0;
+}
+
+.panel {
+  border-radius: var(--radius-panel);
+  padding: clamp(1.5rem, 1rem + 2.5vw, 3rem);
+}
+
+/* A card that is one big link: it lifts and takes the theme's colour on hover or keyboard focus (CardButtonStyle). */
+.card-link {
+  display: block;
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background-color 0.18s ease;
+}
+
+.card-link:hover,
+.card-link:focus-visible {
+  transform: translateY(-3px) scale(1.015);
+  border-color: var(--main);
+  background-image: linear-gradient(var(--tint-strong), var(--tint-strong));
+  box-shadow:
+    0 0 0 1px var(--main),
+    var(--shadow-lift);
+}
+
+.card-link:focus-visible {
+  outline-offset: 4px;
+  border-radius: var(--radius-card);
+}
+
+.card-link:active {
+  transform: scale(0.985);
+}
+
+.card-link .more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.75rem;
+  color: var(--link);
+  font-weight: 650;
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.62rem 1.15rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font: inherit;
+  font-weight: 680;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+/* The main action: a capsule of the theme's colours, its label in navy (ProminentButtonStyle). */
+.button-primary {
+  background-image: var(--gradient-on-text);
+  color: var(--on-gradient);
+  box-shadow: var(--shadow-button);
+}
+
+.button-primary:hover {
+  background-image: linear-gradient(rgb(255 255 255 / 0.14), rgb(255 255 255 / 0.14)), var(--gradient-on-text);
+  transform: translateY(-1px);
+}
+
+.button-primary:active {
+  background-image: linear-gradient(rgb(0 0 0 / 0.12), rgb(0 0 0 / 0.12)), var(--gradient-on-text);
+  transform: translateY(0);
+}
+
+/* The other actions: a glass capsule with the page's own text colour (HeaderButtonStyle). */
+.button-glass {
+  background-color: var(--glass);
+  border-color: var(--glass-border);
+  color: var(--text);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+}
+
+.button-glass:hover {
+  background-image: linear-gradient(var(--tint), var(--tint));
+  border-color: var(--main);
+}
+
+.button-large {
+  padding: 1rem 1.7rem;
+  font-size: 1.2rem;
+  font-weight: 760;
+}
+
+/* ---------- Icon tiles and chips ---------- */
+
+.tile {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 26%;
+  background-image: var(--gradient);
+  color: var(--on-gradient);
+}
+
+.tile-large {
+  width: 3.4rem;
+  height: 3.4rem;
+}
+
+.tile-soft {
+  background-image: linear-gradient(var(--tint-strong), var(--tint-strong));
+  color: var(--link);
+}
+
+.tile-number {
+  background-image: var(--gradient-on-text);
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  list-style: none;
+}
+
+.chips li {
+  margin: 0;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: var(--radius-pill);
+  background-image: linear-gradient(var(--tint-strong), var(--tint-strong));
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 650;
+}
+
+.chip svg {
+  color: var(--link);
+}
+
+/* ---------- Bold sections and headings ---------- */
+
+.gradient-text {
+  background-image: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* A bold section of the theme's colours, its text in navy (5.14:1 or more along the whole gradient). */
+.band {
+  background-image: var(--gradient-on-text);
+  color: var(--on-gradient);
+  border-radius: var(--radius-panel);
+}
+
+.band a:not(.button) {
+  color: inherit;
+}
+
+/* The focus ring in navy on the band: the page's blue ring wouldn't show against the gradient. */
+.band :focus-visible {
+  outline-color: var(--navy);
+}
+
+.band .button-band {
+  background-color: var(--navy);
+  color: #f3f5fb;
+}
+
+.band .button-band:hover {
+  background-color: #262b4d;
+}
+
+.section-heading {
+  max-width: 44rem;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: var(--accent-text);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* A heading with its icon tile beside it. */
+.with-tile {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.9rem;
+}
+
+.with-tile h2,
+.with-tile h3 {
+  margin: 0;
+}
+
+/* A section's heading inside its own card: smaller than a page's sections. */
+.panel h2 {
+  font-size: clamp(1.35rem, 1.15rem + 0.8vw, 1.75rem);
+}
+
+.band.panel h2 {
+  font-size: clamp(1.65rem, 1.25rem + 1.6vw, 2.5rem);
+}
+
+/* Steps, each with its number on a tile. */
+.steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1.4rem;
+}
+
+.steps > li {
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.steps > li > div > :last-child {
+  margin-bottom: 0;
+}
+
+.steps h3 {
+  margin-bottom: 0.3em;
+}
+
+/* Lists with a tick or a dot in the theme's colour. */
+.ticks {
+  list-style: none;
+  padding: 0;
+}
+
+.ticks li {
+  position: relative;
+  padding-left: 1.75rem;
+}
+
+.ticks li::before {
+  content: "";
+  position: absolute;
+  left: 0.2rem;
+  top: 0.55em;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background-image: var(--gradient);
+}
+
+/* ---------- The fallbacks ---------- */
+
+/* No glass where the browser can't blur behind it. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .glass,
+  .button-glass {
+    background-color: var(--glass-solid);
+  }
+}
+
+/* Reduce Transparency: solid cards, no blur, no washes. */
+@media (prefers-reduced-transparency: reduce) {
+  .glass,
+  .button-glass {
+    background-color: var(--glass-solid);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  body::before {
+    display: none;
+  }
+}
+
+/* More contrast: solid cards and a solid colour for gradient headings. */
+@media (prefers-contrast: more) {
+  .glass,
+  .button-glass {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .gradient-text {
+    background-image: none;
+    color: var(--text);
+  }
+}
+
+/* Reduce Motion: nothing moves. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .card-link:hover,
+  .card-link:focus-visible,
+  .card-link:active,
+  .button-primary:hover,
+  .button-primary:active {
+    transform: none;
+  }
+}
+
+/* Forced colours: the system's colours, borders where the glass was. */
+@media (forced-colors: active) {
+  body::before {
+    display: none;
+  }
+
+  .glass,
+  .band,
+  .chip,
+  .tile,
+  .button-glass {
+    background-image: none;
+    border: 1px solid CanvasText;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .button-primary,
+  .skip-link,
+  .band .button-band {
+    background-image: none;
+    border: 2px solid ButtonText;
+    color: ButtonText;
+    background-color: ButtonFace;
+  }
+
+  .gradient-text {
+    background-image: none;
+    color: CanvasText;
+  }
+
+  .ticks li::before {
+    background-image: none;
+    background-color: CanvasText;
+  }
+
+  .card-link:hover,
+  .card-link:focus-visible {
+    border-color: Highlight;
+    outline: 2px solid Highlight;
+  }
+}

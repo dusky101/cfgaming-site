@@ -1,0 +1,90 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icon from "../components/Icon.astro";
+import NextSteps from "../components/NextSteps.astro";
+import PageHeader from "../components/PageHeader.astro";
+import { links, pages } from "../lib/site";
+---
+
+<BaseLayout
+  title="Privacy"
+  description="This site keeps nothing about you. What CF Gaming keeps on your Mac, and what it connects to."
+>
+  <PageHeader
+    icon="lock"
+    title="Privacy"
+    lead="This site keeps nothing about you. CF Gaming keeps what it needs on your Mac: here's what, and what it connects to."
+  />
+
+  <div class="wrap stack">
+    <section class="glass panel" aria-labelledby="site">
+      <div class="with-tile">
+        <span class="tile"><Icon name="globe" /></span>
+        <h2 id="site">This site</h2>
+      </div>
+      <ul class="ticks" role="list">
+        <li>No cookies, no analytics, no adverts, and nothing from other companies loaded into your browser.</li>
+        <li>
+          It's served by Cloudflare, which handles each visit to deliver the page, under <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.
+        </li>
+        <li>
+          The download comes from GitHub, which counts each download, under <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub's privacy statement</a>.
+        </li>
+      </ul>
+    </section>
+
+    <section class="glass panel" aria-labelledby="app">
+      <div class="with-tile">
+        <span class="tile"><Icon name="folder" /></span>
+        <h2 id="app">What CF Gaming keeps, on your Mac</h2>
+      </div>
+      <ul class="ticks" role="list">
+        <li>Your cases and their games, each case a folder of its own; Settings › About shows where.</li>
+        <li>The people who play, with their colours and photos: CF Gaming keeps a small copy of each photo, on this Mac.</li>
+        <li>
+          Recordings, in Movies › CF Gaming unless you choose another folder. Only the game's window and sound are recorded,
+          with voices if you turn them on, and only once macOS has allowed it.
+        </li>
+        <li>Its settings, and its logs, which say what went wrong when something doesn't start (Help › Show Logs).</li>
+      </ul>
+      <p>CF Gaming has no analytics: nothing in it counts or reports how you use it.</p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="connects">
+      <div class="with-tile">
+        <span class="tile"><Icon name="arrows" /></span>
+        <h2 id="connects">What it connects to, and when</h2>
+      </div>
+      <ul class="ticks" role="list">
+        <li>
+          <strong>Updates:</strong> once a day, CF Gaming looks for a new version on its GitHub page. Settings › Updates can
+          turn that off.
+        </li>
+        <li>
+          <strong>What you set up:</strong> Steam's installer from Valve; RetroArch, its files and its cores from libretro;
+          the other emulators from their makers; CF Gaming's own build of Mupen64Plus-Next from its GitHub page.
+        </li>
+        <li>
+          <strong>RetroArch's own files:</strong> Settings › RetroArch compares CF Gaming's copies with libretro's site when
+          you open it, and downloads the ones that changed only when you ask.
+        </li>
+        <li>
+          <strong>Covers,</strong> only when you choose Download Covers…, from libretro-thumbnails, on libretro's server or
+          on GitHub.
+        </li>
+        <li>Steam and your games connect as they would on a PC, under their own makers' policies.</li>
+      </ul>
+      <p class="muted">It never downloads BIOS files or games.</p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="questions">
+      <div class="with-tile">
+        <span class="tile"><Icon name="person" /></span>
+        <h2 id="questions">Questions</h2>
+      </div>
+      <p>Ask on <a href={links.appIssues}>CF Gaming's page on GitHub</a>.</p>
+    </section>
+  </div>
+
+  <NextSteps items={[pages.licences, pages.about]} />
+</BaseLayout>

@@ -1,0 +1,28 @@
+---
+// One of the site's own symbols (src/lib/icons.ts), decorative: whatever it sits beside says what it means.
+import { iconDrawing, type IconName } from "../lib/icons";
+
+interface Props {
+  name: IconName;
+  size?: number;
+}
+
+const { name, size = 22 } = Astro.props;
+const drawing = iconDrawing(name);
+---
+
+<svg
+  aria-hidden="true"
+  focusable="false"
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.8"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  {drawing.paths.map((d) => <path d={d} />)}
+  {drawing.dots?.map(([cx, cy, r]) => <circle cx={cx} cy={cy} r={r} fill="currentColor" stroke="none" />)}
+</svg>
