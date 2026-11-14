@@ -10,7 +10,8 @@
   Strict-Transport-Security: max-age=31536000; includeSubDomains
 
 # The previews and version addresses on workers.dev stay out of search: cfgaming.app is the site's address. Cloudflare's
-# own example from its Workers headers docs; the placeholders match any <name>.<subdomain>.workers.dev, never cfgaming.app.
+# own example from its Workers headers docs; the placeholders match any <name>.<subdomain>.workers.dev, and only those,
+# so cfgaming.app never gets it (checked on both on 14 November).
 https://:version.:subdomain.workers.dev/*
   X-Robots-Tag: noindex
 

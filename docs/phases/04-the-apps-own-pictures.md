@@ -56,6 +56,11 @@ Marc chose "The app's export (27b) first" for the site's pictures. The export is
 8. **Fast and steady:**
    - Each picture has its width and height, so nothing shifts as it loads. Pictures below the first screen load lazily.
    - `CREDITS.md` lists them as CF Gaming's own.
+9. **Going live, with 02.3's icons** (carried over from 02.2), on Marc's say in chat:
+   1. `git switch main`, `git merge --ff-only preview`, `git switch preview`;
+   2. Marc pushes `main`, and `cfgaming.app` shows it;
+   3. then the `www` record and its redirect to `cfgaming.app`, Marc clicking with Claude's steps, and Claude checking each one through the plugin.
+   - **`main` isn't pushed before this merge.** A deploy from `main` as it is now, with `preview_urls: false`, would turn the preview's address off again.
 
 ## The checks
 
