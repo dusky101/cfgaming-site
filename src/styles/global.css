@@ -1,6 +1,6 @@
-/* The site's shared look: the ground, type, layout and the parts every page uses (glass cards, buttons, icon tiles,
-   chips, bold sections), and the fallbacks the app has: Reduce Transparency, more contrast, Reduce Motion and
-   forced colours. Modelled on CFMacGaming/Views/Components/ThemeViews.swift. */
+/* The site's shared look: the ground, type, layout and the parts the pages use (glass cards, buttons, chips, bold
+   sections, and a few icon tiles), and the fallbacks the app has: Reduce Transparency, more contrast, Reduce Motion
+   and forced colours. Modelled on CFMacGaming/Views/Components/ThemeViews.swift. */
 
 *,
 *::before,
@@ -325,6 +325,8 @@ code {
 
 /* ---------- Icon tiles and chips ---------- */
 
+/* Used sparingly (Marc, 14 November 2026: "use icons still but sparingly"): an icon on Home's three highlights
+   only. The same tile with a number instead (.tile-number) numbers the steps on Install and the DirectX 12 draft. */
 .tile {
   display: inline-grid;
   place-items: center;
@@ -339,11 +341,6 @@ code {
 .tile-large {
   width: 3.4rem;
   height: 3.4rem;
-}
-
-.tile-soft {
-  background-image: linear-gradient(var(--tint-strong), var(--tint-strong));
-  color: var(--link);
 }
 
 .tile-number {
@@ -366,19 +363,13 @@ code {
 }
 
 .chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
+  display: inline-block;
   padding: 0.28rem 0.75rem;
   border-radius: var(--radius-pill);
   background-image: linear-gradient(var(--tint-strong), var(--tint-strong));
   color: var(--text);
   font-size: 0.875rem;
   font-weight: 650;
-}
-
-.chip svg {
-  color: var(--link);
 }
 
 /* ---------- Bold sections and headings ---------- */
@@ -430,7 +421,7 @@ code {
   text-transform: uppercase;
 }
 
-/* A heading with its icon tile beside it. */
+/* A heading with its icon tile beside it: Home's three highlights only. */
 .with-tile {
   display: flex;
   align-items: center;
@@ -476,26 +467,13 @@ code {
   margin-bottom: 0.3em;
 }
 
-/* Lists with a tick or a dot in the theme's colour. */
-.ticks {
-  list-style: none;
-  padding: 0;
+/* Lists of points: ordinary bullets, a little apart. */
+.points {
+  padding-left: 1.25rem;
 }
 
-.ticks li {
-  position: relative;
-  padding-left: 1.75rem;
-}
-
-.ticks li::before {
-  content: "";
-  position: absolute;
-  left: 0.2rem;
-  top: 0.55em;
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 50%;
-  background-image: var(--gradient);
+.points li + li {
+  margin-top: 0.5em;
 }
 
 /* ---------- The fallbacks ---------- */
@@ -584,11 +562,6 @@ code {
   .gradient-text {
     background-image: none;
     color: CanvasText;
-  }
-
-  .ticks li::before {
-    background-image: none;
-    background-color: CanvasText;
   }
 
   .card-link:hover,

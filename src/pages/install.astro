@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import DownloadButton from "../components/DownloadButton.astro";
-import Icon from "../components/Icon.astro";
 import NextSteps from "../components/NextSteps.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { getLatestRelease } from "../lib/release";
@@ -15,7 +14,6 @@ const release = await getLatestRelease();
   description="How to install CF Gaming from its disk image, what happens the first time it opens, and how it keeps itself up to date."
 >
   <PageHeader
-    icon="download"
     title="Installing CF Gaming"
     lead="Once, by hand, on each Mac. After that, CF Gaming keeps itself up to date."
   >
@@ -64,12 +62,9 @@ const release = await getLatestRelease();
     </section>
 
     <section class="glass panel" aria-labelledby="first-time">
-      <div class="with-tile">
-        <span class="tile"><Icon name="compass" /></span>
-        <h2 id="first-time">The first time it opens</h2>
-      </div>
+      <h2 id="first-time">The first time it opens</h2>
       <p>CF Gaming sets itself up with you, in its own window.</p>
-      <ul class="ticks" role="list">
+      <ul class="points">
         <li>
           <strong>Recording first:</strong> it asks to record your games, which macOS has to allow. <strong>Not Now</strong> carries on without it, and Settings can allow it later.
         </li>
@@ -83,11 +78,8 @@ const release = await getLatestRelease();
     </section>
 
     <section class="glass panel" aria-labelledby="updates">
-      <div class="with-tile">
-        <span class="tile"><Icon name="refresh" /></span>
-        <h2 id="updates">Updates, by themselves</h2>
-      </div>
-      <ul class="ticks" role="list">
+      <h2 id="updates">Updates, by themselves</h2>
+      <ul class="points">
         <li>Once a day, CF Gaming looks for a new version, and downloads it by itself, with nothing to click.</li>
         <li>
           It waits until nothing is playing, then counts down from 10 seconds and restarts as the new version. <strong>Not Now</strong> leaves it until you next quit.
@@ -99,10 +91,7 @@ const release = await getLatestRelease();
     </section>
 
     <section class="glass panel" aria-labelledby="signed">
-      <div class="with-tile">
-        <span class="tile"><Icon name="shield" /></span>
-        <h2 id="signed">Signed, and checked by Apple</h2>
-      </div>
+      <h2 id="signed">Signed, and checked by Apple</h2>
       <p>
         CF Gaming and its disk image are signed with its maker's Developer ID and notarised by Apple, so macOS knows where
         they come from. What CF Gaming downloads for you, such as Steam's installer, RetroArch and the emulators, is

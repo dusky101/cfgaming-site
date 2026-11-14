@@ -2,7 +2,6 @@
 // Every credit in CF Gaming's Settings › About and its release notes. The credits are CF Gaming 11.5's (written for
 // that release: check them at each release); Wine's source changes are read from the latest release with the download.
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Icon from "../components/Icon.astro";
 import NextSteps from "../components/NextSteps.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { getLatestRelease } from "../lib/release";
@@ -16,17 +15,13 @@ const release = await getLatestRelease();
   description="Every licence and credit in CF Gaming, Wine's source changes and CodeWeavers' source."
 >
   <PageHeader
-    icon="document"
     title="Licences and source"
     lead="CF Gaming is built on other people's work. Here's whose it is, under which licence, and where its source is."
   />
 
   <div class="wrap stack">
     <section class="glass panel" aria-labelledby="wine">
-      <div class="with-tile">
-        <span class="tile"><Icon name="code" /></span>
-        <h2 id="wine">Wine, and its source</h2>
-      </div>
+      <h2 id="wine">Wine, and its source</h2>
       <p>
         CF Gaming's engine is Wine, from CodeWeavers' CrossOver 26.3 source, under the GNU Lesser General Public License,
         version 2.1 or later. Its source is <a href="https://www.codeweavers.com/crossover/source">on CodeWeavers' site</a>.
@@ -48,11 +43,8 @@ const release = await getLatestRelease();
     </section>
 
     <section class="glass panel" aria-labelledby="graphics">
-      <div class="with-tile">
-        <span class="tile"><Icon name="monitor" /></span>
-        <h2 id="graphics">DirectX on a Mac</h2>
-      </div>
-      <ul class="ticks" role="list">
+      <h2 id="graphics">DirectX on a Mac</h2>
+      <ul class="points">
         <li>
           <strong>D3DMetal</strong> © Apple, under the Game Porting Toolkit licence, which allows non-commercial
           distribution. CF Gaming is free.
@@ -66,11 +58,8 @@ const release = await getLatestRelease();
     </section>
 
     <section class="glass panel" aria-labelledby="inside">
-      <div class="with-tile">
-        <span class="tile"><Icon name="layers" /></span>
-        <h2 id="inside">Inside the app</h2>
-      </div>
-      <ul class="ticks" role="list">
+      <h2 id="inside">Inside the app</h2>
+      <ul class="points">
         <li>
           <strong>applesauce</strong>, under the GNU General Public License version 3. Its licence and source are inside
           the app: <strong>About applesauce…</strong> in Compress Games….
@@ -84,11 +73,8 @@ const release = await getLatestRelease();
     </section>
 
     <section class="glass panel" aria-labelledby="pictures">
-      <div class="with-tile">
-        <span class="tile"><Icon name="gamepad" /></span>
-        <h2 id="pictures">Pictures and lists in the app</h2>
-      </div>
-      <ul class="ticks" role="list">
+      <h2 id="pictures">Pictures and lists in the app</h2>
+      <ul class="points">
         <li>
           <strong>Console icons:</strong> RetroArch's themes from libretro's <a href="https://github.com/libretro/retroarch-assets">retroarch-assets</a>, under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>: Automatic, Systematic
           and FlatUX by baxysquare (<a href="https://github.com/baxysquare/baxy-retroarch-themes">his themes</a>), Retrosystem
@@ -111,10 +97,7 @@ const release = await getLatestRelease();
     </section>
 
     <section class="glass panel" aria-labelledby="downloaded">
-      <div class="with-tile">
-        <span class="tile"><Icon name="download" /></span>
-        <h2 id="downloaded">Downloaded when you ask</h2>
-      </div>
+      <h2 id="downloaded">Downloaded when you ask</h2>
       <p>
         RetroArch, its cores, the shaders, libretro-database's and Project64's cheat files, and the emulators aren't part of
         CF Gaming. CF Gaming downloads each one from its maker, under its own licence, when you ask.
@@ -122,10 +105,7 @@ const release = await getLatestRelease();
     </section>
 
     <section class="glass panel" aria-labelledby="this-site">
-      <div class="with-tile">
-        <span class="tile"><Icon name="globe" /></span>
-        <h2 id="this-site">This website</h2>
-      </div>
+      <h2 id="this-site">This website</h2>
       <p>
         Built with <a href="https://astro.build">Astro</a>, under the MIT licence.
       </p>

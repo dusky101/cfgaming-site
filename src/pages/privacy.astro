@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Icon from "../components/Icon.astro";
 import NextSteps from "../components/NextSteps.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { pages } from "../lib/site";
@@ -11,18 +10,14 @@ import { pages } from "../lib/site";
   description="This site keeps nothing about you. What CF Gaming keeps on your Mac, and what it connects to."
 >
   <PageHeader
-    icon="lock"
     title="Privacy"
     lead="This site keeps nothing about you. CF Gaming keeps what it needs on your Mac: here's what, and what it connects to."
   />
 
   <div class="wrap stack">
     <section class="glass panel" aria-labelledby="site">
-      <div class="with-tile">
-        <span class="tile"><Icon name="globe" /></span>
-        <h2 id="site">This site</h2>
-      </div>
-      <ul class="ticks" role="list">
+      <h2 id="site">This site</h2>
+      <ul class="points">
         <li>No cookies, no analytics, no adverts, and nothing from other companies loaded into your browser.</li>
         <li>
           It's served by Cloudflare, which handles each visit to deliver the page, under <a href="https://www.cloudflare.com/privacypolicy/">Cloudflare's privacy policy</a>.
@@ -34,11 +29,8 @@ import { pages } from "../lib/site";
     </section>
 
     <section class="glass panel" aria-labelledby="app">
-      <div class="with-tile">
-        <span class="tile"><Icon name="folder" /></span>
-        <h2 id="app">What CF Gaming keeps, on your Mac</h2>
-      </div>
-      <ul class="ticks" role="list">
+      <h2 id="app">What CF Gaming keeps, on your Mac</h2>
+      <ul class="points">
         <li>Your cases and their games, each case a folder of its own; Settings › About shows where.</li>
         <li>The people who play, with their colours and photos: CF Gaming keeps a small copy of each photo, on this Mac.</li>
         <li>
@@ -51,11 +43,8 @@ import { pages } from "../lib/site";
     </section>
 
     <section class="glass panel" aria-labelledby="connects">
-      <div class="with-tile">
-        <span class="tile"><Icon name="arrows" /></span>
-        <h2 id="connects">What it connects to, and when</h2>
-      </div>
-      <ul class="ticks" role="list">
+      <h2 id="connects">What it connects to, and when</h2>
+      <ul class="points">
         <li>
           <strong>Updates:</strong> once a day, CF Gaming looks for a new version on its GitHub page. Settings › Updates can
           turn that off.

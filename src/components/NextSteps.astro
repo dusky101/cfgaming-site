@@ -1,6 +1,5 @@
 ---
 // "Where next": cards that are links to other pages, which lift on hover and keyboard focus.
-import Icon from "./Icon.astro";
 import type { SitePage } from "../lib/site";
 
 interface Props {
@@ -19,12 +18,7 @@ const { heading = "Where next", items } = Astro.props;
         items.map((page) => (
           <li>
             <a class="glass card card-link" href={page.href}>
-              <span class="with-tile">
-                <span class="tile">
-                  <Icon name={page.icon} />
-                </span>
-                <span class="next-title">{page.title}</span>
-              </span>
+              <span class="next-title">{page.title}</span>
               <span class="muted">{page.summary}</span>
             </a>
           </li>
@@ -52,6 +46,8 @@ const { heading = "Where next", items } = Astro.props;
   }
 
   .next-title {
+    display: block;
+    margin-bottom: 0.4rem;
     font-size: 1.15rem;
     font-weight: 700;
   }

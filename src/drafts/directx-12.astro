@@ -3,7 +3,6 @@
 // D3DMetal (stages 27e and 27f of CF Gaming's plan). Written from the plan, ahead of the app, at Marc's request
 // ("create that too. but just hide it for now"). Phase 07 checks every line against the app before it's published.
 import BaseLayout from "../layouts/BaseLayout.astro";
-import Icon from "../components/Icon.astro";
 import NextSteps from "../components/NextSteps.astro";
 import PageHeader from "../components/PageHeader.astro";
 import { pages } from "../lib/site";
@@ -16,17 +15,13 @@ const appleDownloads = "https://developer.apple.com/download/all/?q=game%20porti
   description="DirectX 12 games need Apple's D3DMetal, from Apple's free Game Porting Toolkit: a free Apple developer account, one download, and CF Gaming does the rest."
 >
   <PageHeader
-    icon="monitor"
     title="DirectX 12 games"
     lead="They play through Apple's D3DMetal, which Apple gives out itself. A free account, one download, and CF Gaming does the rest."
   />
 
   <div class="wrap stack">
     <section class="glass panel" aria-labelledby="why">
-      <div class="with-tile">
-        <span class="tile"><Icon name="layers" /></span>
-        <h2 id="why">Why it's a download from Apple</h2>
-      </div>
+      <h2 id="why">Why it's a download from Apple</h2>
       <p>
         CF Gaming plays DirectX 12 games through <strong>D3DMetal</strong>, part of Apple's <strong>Game Porting Toolkit</strong>. Apple gives the toolkit out itself, free, to anyone with an Apple developer account, so it doesn't come with CF Gaming: you download it once, from Apple, and CF Gaming sets it up.
       </p>
@@ -34,11 +29,8 @@ const appleDownloads = "https://developer.apple.com/download/all/?q=game%20porti
     </section>
 
     <section class="glass panel" aria-labelledby="you-need">
-      <div class="with-tile">
-        <span class="tile"><Icon name="person" /></span>
-        <h2 id="you-need">What you need</h2>
-      </div>
-      <ul class="ticks" role="list">
+      <h2 id="you-need">What you need</h2>
+      <ul class="points">
         <li>
           <strong>An Apple Account:</strong> the one you use for the App Store or iCloud will do.
         </li>
@@ -92,20 +84,14 @@ const appleDownloads = "https://developer.apple.com/download/all/?q=game%20porti
     </section>
 
     <section class="glass panel" aria-labelledby="once">
-      <div class="with-tile">
-        <span class="tile"><Icon name="people" /></span>
-        <h2 id="once">Once for each account on the Mac</h2>
-      </div>
+      <h2 id="once">Once for each account on the Mac</h2>
       <p>
         D3DMetal is kept in your own CF Gaming folder, so each account on the Mac does this once. Updates to CF Gaming keep it where it is.
       </p>
     </section>
 
     <section class="glass panel" aria-labelledby="password">
-      <div class="with-tile">
-        <span class="tile"><Icon name="lock" /></span>
-        <h2 id="password">Your Apple password stays with Apple</h2>
-      </div>
+      <h2 id="password">Your Apple password stays with Apple</h2>
       <p>
         You sign in on Apple's own site, in your own browser. CF Gaming never asks for your Apple password and never sees it: all it looks for is the toolkit's disk image in your Downloads folder.
       </p>

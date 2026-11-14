@@ -18,9 +18,9 @@ import { pages } from "../lib/site";
         <Logo size={200} eager alt="CF Gaming's logo: two cartoon gamers in front of a pixel-art sunset" />
       </div>
       <ul class="chips" role="list" aria-label="At a glance">
-        <li class="chip"><Icon name="check" size={16} /> Free</li>
-        <li class="chip"><Icon name="chip" size={16} /> Macs with Apple silicon</li>
-        <li class="chip"><Icon name="refresh" size={16} /> macOS 27 or later</li>
+        <li class="chip">Free</li>
+        <li class="chip">Macs with Apple silicon</li>
+        <li class="chip">macOS 27 or later</li>
       </ul>
       <h1>Windows games and classic consoles, <span class="gradient-text">together on your Mac.</span></h1>
       <p class="lead">
@@ -57,7 +57,7 @@ import { pages } from "../lib/site";
             Steam gets a case of its own. Install your games in Steam as you would on a PC, and each one appears in CF
             Gaming by itself, with Steam's artwork, ready to play.
           </p>
-          <ul class="ticks" role="list">
+          <ul class="points">
             <li>
               CF Gaming's own Wine engine, made from CodeWeavers' open source, draws each game's DirectX with Apple's
               D3DMetal for DirectX 12, DXMT for DirectX 10 and 11, or Wine's own for older games. Auto chooses for you.
@@ -76,7 +76,7 @@ import { pages } from "../lib/site";
             Put your games in one folder, with a folder for each console. <strong>Set Up Consoles</strong> finds the
             consoles you have games for, and gives each one a case of its own, with its box art and its own settings.
           </p>
-          <ul class="ticks" role="list">
+          <ul class="points">
             <li>RetroArch and its cores, installed from libretro's own site, checked before they're kept, and kept up to date.</li>
             <li>Your own RetroArch settings are never changed: CF Gaming keeps its own.</li>
             <li>
@@ -96,7 +96,7 @@ import { pages } from "../lib/site";
             Give one game its own core, graphics and picture, over its case's, while every other game keeps the case's
             settings.
           </p>
-          <ul class="ticks" role="list">
+          <ul class="points">
             <li>
               Add a texture pack to a Nintendo 64 game, and see it redrawn in finer detail. Packs of pictures, .htc and
               .hts all work, the last with CF Gaming's own build of Mupen64Plus-Next.
@@ -113,20 +113,14 @@ import { pages } from "../lib/site";
       <h2 id="and-more" class="more-heading">And more</h2>
       <div class="grid">
         <article class="glass card">
-          <div class="with-tile">
-            <span class="tile tile-soft"><Icon name="joystick" /></span>
-            <h3>Controllers</h3>
-          </div>
+          <h3>Controllers</h3>
           <p class="muted">
             Every controller connected, how RetroArch reads it, a test for its buttons, and which stick works as the D-pad
             for each console.
           </p>
         </article>
         <article class="glass card">
-          <div class="with-tile">
-            <span class="tile tile-soft"><Icon name="record" /></span>
-            <h3>Recording</h3>
-          </div>
+          <h3>Recording</h3>
           <p class="muted">
             Press <kbd><span aria-hidden="true">⌃⇧R</span><span class="visually-hidden">Control-Shift-R</span></kbd> to
             record a game, even full screen, with everyone's voices mixed in. Each person's recordings go in a folder of
@@ -134,10 +128,7 @@ import { pages } from "../lib/site";
           </p>
         </article>
         <article class="glass card">
-          <div class="with-tile">
-            <span class="tile tile-soft"><Icon name="book" /></span>
-            <h3>The guide, built in</h3>
-          </div>
+          <h3>The guide, built in</h3>
           <p class="muted">
             A page for each part of CF Gaming. The <strong>?</strong> at the top of each page of Settings opens the guide at
             the page about it.
@@ -255,12 +246,12 @@ import { pages } from "../lib/site";
       grid-column: 1 / -1;
     }
 
-    .highlight-first .ticks {
+    .highlight-first .points {
       columns: 3;
       column-gap: 2rem;
     }
 
-    .highlight-first .ticks li {
+    .highlight-first .points li {
       break-inside: avoid;
     }
   }
