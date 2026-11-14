@@ -1,7 +1,8 @@
 // How Cloudflare serves the site: a Worker with static assets only (no code of its own), serving dist/ as Astro builds
-// it. Workers Builds reads this at each push to main: the dashboard's build command (`npm run build`) makes dist/, and
-// its deploy command (`npx wrangler deploy`, Cloudflare's default) publishes it with these settings.
-// From Cloudflare's Astro guide and Wrangler's settings (read 13 November 2026).
+// it. Workers Builds reads this at each push: the dashboard's build command (`npm run build`) makes dist/. On main,
+// `npx wrangler deploy` publishes it to cfgaming.app; on any other branch (preview), `npx wrangler preview` makes that
+// branch's Preview instead. From Cloudflare's Astro guide, Wrangler's settings and Worker Previews (read 13 and 14
+// November 2026).
 {
   // Must match the Worker's name in Cloudflare's dashboard, or the build fails.
   "name": "cfgaming-site",
@@ -13,7 +14,11 @@
     // /about/ is dist/about/index.html, and /about goes there (307). Cloudflare's default, written down.
     "html_handling": "auto-trailing-slash"
   },
-  // cfgaming.app is the only address: no *.workers.dev address, and no preview addresses.
+  // The live site's only address is cfgaming.app: the Worker's own *.workers.dev address stays off.
   "workers_dev": false,
-  "preview_urls": false
+  // Previews (and version addresses) are served on *.workers.dev, which Cloudflare and public/_headers mark noindex.
+  // Production and preview workers.dev addresses are set separately; without this, a Preview has no address.
+  "preview_urls": true,
+  // `npx wrangler preview` needs this block, even empty: the Preview uses the settings above as they are.
+  "previews": {}
 }

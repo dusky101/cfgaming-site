@@ -9,6 +9,11 @@
   Cross-Origin-Opener-Policy: same-origin
   Strict-Transport-Security: max-age=31536000; includeSubDomains
 
+# The previews and version addresses on workers.dev stay out of search: cfgaming.app is the site's address. Cloudflare's
+# own example from its Workers headers docs; the placeholders match any <name>.<subdomain>.workers.dev, never cfgaming.app.
+https://:version.:subdomain.workers.dev/*
+  X-Robots-Tag: noindex
+
 # Astro names these files by their contents, so a changed file always has a new name.
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
