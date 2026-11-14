@@ -1,16 +1,22 @@
 // @ts-check
 import { defineConfig, envField } from "astro/config";
 
-// Pages written ahead of time and not yet for the public, in src/drafts/: `npm run dev` shows them, and the build
-// leaves them out, so they never reach cfgaming.app. To publish one, move it into src/pages/ and take it out of here.
+// Pages written ahead of time and not yet for the public, in src/drafts/. `npm run dev` shows them, and so does the
+// preview: Workers Builds names the branch it's building in WORKERS_CI_BRANCH (Cloudflare's build variables, read
+// 14 November 2026). Every other build leaves them out, so they never reach cfgaming.app. To publish one, move it into
+// src/pages/ and take it out of here.
 const drafts = [{ pattern: "/directx-12", entrypoint: "./src/drafts/directx-12.astro" }];
+// Read without Node's types, which the project doesn't install.
+const buildingBranch = /** @type {any} */ (globalThis).process?.env?.WORKERS_CI_BRANCH;
 
 /** @type {import("astro").AstroIntegration} */
-const draftsOnlyInDev = {
+const draftsOnDevAndPreview = {
   name: "cfgaming-drafts",
   hooks: {
     "astro:config:setup": ({ command, injectRoute }) => {
-      if (command === "dev") drafts.forEach((draft) => injectRoute(draft));
+      if (command === "dev" || (command === "build" && buildingBranch === "preview")) {
+        drafts.forEach((draft) => injectRoute(draft));
+      }
     },
   },
 };
@@ -18,7 +24,7 @@ const draftsOnlyInDev = {
 // CF Gaming's website: a static site, built once at each push and served by Cloudflare from cfgaming.app.
 export default defineConfig({
   site: "https://cfgaming.app",
-  integrations: [draftsOnlyInDev],
+  integrations: [draftsOnDevAndPreview],
   // Cloudflare serves about/index.html at /about/, so every link ends in a slash and dev matches it.
   trailingSlash: "always",
   build: {
