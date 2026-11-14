@@ -1,8 +1,12 @@
 ---
 // Marc's story, drafted from docs/ABOUT.md for him to change into his own words.
+import { Picture } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import NextSteps from "../components/NextSteps.astro";
 import PageHeader from "../components/PageHeader.astro";
+// The channel's banner: made by Marc in Canva, its two gamers drawn by Google's Gemini (CREDITS.md). Never served
+// wider than 1280 pixels, so the whole banner stays inside Canva's 480,000-pixel limit for its Pro pictures.
+import banner from "../assets/brand/charddie-games-banner.png";
 import { links, pages } from "../lib/site";
 ---
 
@@ -17,9 +21,23 @@ import { links, pages } from "../lib/site";
         simply, so I built CF Gaming: its own Wine engine, made from CodeWeavers' open source, with Apple's D3DMetal for
         DirectX 12, and Steam in a case of its own, everything set up for them.
       </p>
-      <p>
-        CF Gaming's logo is the one I made for their YouTube channel, <a href={links.charddieGames}>Charddie Games</a>.
-      </p>
+    </section>
+
+    <section class="glass panel" aria-labelledby="channel">
+      <h2 id="channel">Charddie Games</h2>
+      <Picture
+        src={banner}
+        alt="Charddie Games' banner: two cartoon gamers, one with a football and one with a toy blaster, beside the words Charddie Games and Let's Play."
+        width={1280}
+        widths={[640, 960, 1280]}
+        sizes="(min-width: 48rem) 42rem, calc(100vw - 5rem)"
+        formats={["avif", "webp"]}
+        loading="lazy"
+        decoding="async"
+        class="banner"
+      />
+      <p>My sons' YouTube channel. CF Gaming's logo is the one I made for it, with Google's Gemini.</p>
+      <a class="button button-glass" href={links.charddieGames}>Charddie Games on YouTube</a>
     </section>
 
     <section class="glass panel" aria-labelledby="consoles">
@@ -47,6 +65,14 @@ import { links, pages } from "../lib/site";
 <style>
   .story p {
     font-size: 1.12rem;
+  }
+
+  .story :global(.banner) {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 1.25rem;
+    border-radius: var(--radius-card);
   }
 
   .signature {
