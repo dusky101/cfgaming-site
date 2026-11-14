@@ -21,7 +21,7 @@ The download always fetches the latest release, even before the site is rebuilt.
    - The rule now is exactly one `.dmg`, and a release with both disk images would fail it. The new rule: exactly one `CFGaming.dmg`, with the versioned disk image allowed beside it.
    - The scratch cases updated to match: no `CFGaming.dmg`, two of them, a size of 0.
 3. **The deploy hook:**
-   - The site is a Worker, not a Pages project (phase 02.1). Cloudflare's Workers Builds docs, read 13 November, don't mention deploy hooks. So this phase first finds Workers Builds' own way to start a build from outside (its API, perhaps) and checks it in Cloudflare's docs.
+   - The site is a Worker, not a Pages project (phase 02.1). Cloudflare's Workers Builds docs, read 13 November, don't mention deploy hooks. So this phase first finds Workers Builds' own way to start a build from outside, and checks it in Cloudflare's docs. Found on 14 November, in Cloudflare's API description (through the Cloudflare plugin): Workers Builds has deploy hooks, created with `POST /accounts/{account_id}/builds/workers/{script_name}/deploy_hooks` and set off with `POST /workers/builds/deploy_hooks/{deploy_hook_uuid}`.
    - It's kept in his Keychain, never in either repository: anyone with its address can make the site rebuild.
 4. **Between a release and the rebuild,** for those few minutes, the button names the old version but fetches the new one. Nothing breaks.
 
