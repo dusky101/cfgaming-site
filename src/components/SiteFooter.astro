@@ -1,6 +1,7 @@
 ---
-// The footer on every page: the site's other pages, and whose names are whose. No links to GitHub (Marc, 13 November:
-// "i don't want links to the github yet").
+// The footer on every page: the site's other pages, and Marc's sons' channel. No links to GitHub (Marc, 13 November:
+// "i don't want links to the github yet"). The trademark notice is on Licences only (Marc, 14 November: "Once, on
+// Licences").
 import Logo from "./Logo.astro";
 import { footerNavigation, links, mainNavigation } from "../lib/site";
 
@@ -15,7 +16,7 @@ const here = Astro.url.pathname;
         <span>CF Gaming</span>
       </p>
       <p class="muted">Windows games and classic consoles on your Mac, in one place. Free, with no adverts.</p>
-      <p class="muted">The logo comes from <a href={links.charddieGames}>Charddie Games</a>, on YouTube.</p>
+      <p class="muted"><a href={links.charddieGames}>Charddie Games, on YouTube</a></p>
     </div>
     <nav aria-labelledby="footer-site">
       <h2 id="footer-site" class="footer-heading">The site</h2>
@@ -31,12 +32,6 @@ const here = Astro.url.pathname;
         }
       </ul>
     </nav>
-  </div>
-  <div class="wrap">
-    <p class="trademarks">
-      Mac and macOS are trademarks of Apple Inc., Windows and DirectX of Microsoft, and Steam of Valve. CF Gaming isn't
-      made or endorsed by them, or by any console's maker.
-    </p>
   </div>
 </footer>
 
@@ -88,13 +83,5 @@ const here = Astro.url.pathname;
 
   a[aria-current="page"] {
     font-weight: 700;
-  }
-
-  .trademarks {
-    margin: 2rem 0 0;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--glass-border);
-    color: var(--text-muted);
-    font-size: 0.85rem;
   }
 </style>

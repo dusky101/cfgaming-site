@@ -5,7 +5,8 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import NextSteps from "../components/NextSteps.astro";
 import PageHeader from "../components/PageHeader.astro";
 // The channel's banner: made by Marc in Canva, its two gamers drawn by Google's Gemini (CREDITS.md). Never served
-// wider than 1280 pixels, so the whole banner stays inside Canva's 480,000-pixel limit for its Pro pictures.
+// wider than 1280 pixels, so the whole banner stays inside Canva's 480,000-pixel limit for its Pro pictures. The banner
+// is the link to the channel (Marc: "make the banner clickable"), so its alternative text says where it goes first.
 import banner from "../assets/brand/charddie-games-banner.png";
 import { links, pages } from "../lib/site";
 ---
@@ -17,30 +18,38 @@ import { links, pages } from "../lib/site";
     <section class="glass panel" aria-labelledby="at-home">
       <h2 id="at-home">It began at home</h2>
       <p>
-        My sons wanted to play their Windows games on their Macs, DirectX 12 ones included. Nothing we tried did all of it
-        simply, so I built CF Gaming: its own Wine engine, made from CodeWeavers' open source, with Apple's D3DMetal for
-        DirectX 12, and Steam in a case of its own, everything set up for them.
+        My sons wanted to play their Windows games on their Macs, DirectX 12 ones included. CodeWeavers' CrossOver could do
+        it, but it cost more than we wanted to spend.
+      </p>
+      <p>
+        So I built CF Gaming for the latest macOS: its own Wine engine, made from the same open source CrossOver is built
+        on, with Apple's D3DMetal for DirectX 12, and Steam in a case of its own, everything set up for them.
+      </p>
+      <p>
+        It's free for now. Soon there'll be a cost to it, but if you install it now, it stays free for you for good. Well
+        done for finding it early.
       </p>
     </section>
 
     <section class="glass panel" aria-labelledby="channel">
       <h2 id="channel">Charddie Games</h2>
-      <Picture
-        src={banner}
-        alt="Charddie Games' banner: two cartoon gamers, one with a football and one with a toy blaster, beside the words Charddie Games and Let's Play."
-        width={1280}
-        widths={[640, 960, 1280]}
-        sizes="(min-width: 48rem) 42rem, calc(100vw - 5rem)"
-        formats={["avif", "webp"]}
-        loading="lazy"
-        decoding="async"
-        class="banner"
-      />
+      <a class="banner-link" href={links.charddieGames}>
+        <Picture
+          src={banner}
+          alt="Charddie Games on YouTube: the channel's banner, with its two cartoon gamers."
+          width={1280}
+          widths={[640, 960, 1280]}
+          sizes="(min-width: 48rem) 42rem, calc(100vw - 5rem)"
+          formats={["avif", "webp"]}
+          loading="lazy"
+          decoding="async"
+          class="banner"
+        />
+      </a>
       <p>
         Follow my two sons' YouTube channel, if you'd like to: they like to play games and football, and other things
         occasionally.
       </p>
-      <a class="button button-glass" href={links.charddieGames}>Charddie Games on YouTube</a>
     </section>
 
     <section class="glass panel" aria-labelledby="consoles">
@@ -70,12 +79,51 @@ import { links, pages } from "../lib/site";
     font-size: 1.12rem;
   }
 
+  /* The banner as a link: it lifts a little on hover and keyboard focus, as the cards do. */
+  .banner-link {
+    display: block;
+    margin-bottom: 1.25rem;
+    border-radius: var(--radius-card);
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .banner-link :global(picture) {
+    display: block;
+  }
+
   .story :global(.banner) {
     display: block;
     width: 100%;
     height: auto;
-    margin-bottom: 1.25rem;
     border-radius: var(--radius-card);
+  }
+
+  .banner-link:hover,
+  .banner-link:focus-visible {
+    transform: translateY(-3px);
+    box-shadow:
+      0 0 0 2px var(--main),
+      var(--shadow-lift);
+  }
+
+  .banner-link:focus-visible {
+    outline-offset: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .banner-link:hover,
+    .banner-link:focus-visible {
+      transform: none;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .banner-link:hover,
+    .banner-link:focus-visible {
+      outline: 2px solid Highlight;
+    }
   }
 
   .signature {
